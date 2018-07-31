@@ -17,7 +17,7 @@ function(handle_swift_sources
   cmake_parse_arguments(SWIFTSOURCES
       "IS_MAIN;IS_STDLIB;IS_STDLIB_CORE;IS_SDK_OVERLAY;EMBED_BITCODE"
       "SDK;ARCHITECTURE;INSTALL_IN_COMPONENT"
-      "DEPENDS;API_NOTES;COMPILE_FLAGS;MODULE_NAME"
+      "DEPENDS;API_NOTES;COMPILE_FLAGS;MODULE_NAME;LINK_FLAGS"
       ${ARGN})
   translate_flag(${SWIFTSOURCES_IS_MAIN} "IS_MAIN" IS_MAIN_arg)
   translate_flag(${SWIFTSOURCES_IS_STDLIB} "IS_STDLIB" IS_STDLIB_arg)
@@ -56,6 +56,7 @@ function(handle_swift_sources
   endforeach()
 
   set(swift_compile_flags ${SWIFTSOURCES_COMPILE_FLAGS})
+  list(APPEND swift_compile_flags ${SWIFTSOURCES_LINK_FLAGS})
   if (NOT SWIFTSOURCES_IS_MAIN)
     list(APPEND swift_compile_flags "-module-link-name" "${name}")
   endif()
