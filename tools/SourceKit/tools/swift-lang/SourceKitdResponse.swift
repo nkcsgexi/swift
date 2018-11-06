@@ -174,6 +174,11 @@ public class SourceKitdResponse: CustomStringConvertible {
       return Dictionary(dict: val)
     }
 
+    public func getRawData() -> (UnsafeRawPointer, Int) {
+      return (sourcekitd_variant_data_get_ptr(val),
+              sourcekitd_variant_data_get_size(val))
+    }
+
     public var description: String {
       return val.description
     }
