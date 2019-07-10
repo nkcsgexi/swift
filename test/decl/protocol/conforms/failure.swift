@@ -9,7 +9,7 @@ extension P1 {
   func bar() {} // okay
 }
 
-struct P1Conformer : P1 {} // expected-error {{does not conform}}
+struct P1Conformer : P1 {} // expected-error {{does not conform}} expected-note{{do you want to add protocol stubs?}}
 
 
 protocol P2 {
@@ -22,7 +22,7 @@ extension P2 where Self : P2Helper {
   func bar() {} // expected-note {{candidate}}
 }
 
-struct P2Conformer : P2 {} // expected-error {{does not conform}}
+struct P2Conformer : P2 {} // expected-error {{does not conform}} expected-note 2 {{do you want to add protocol stubs?}}
 
 
 protocol P3 {
@@ -36,7 +36,7 @@ extension P3 {
   func bar() {} // okay
 }
 
-struct P3Conformer : P3 { // expected-error {{does not conform}}
+struct P3Conformer : P3 { // expected-error {{does not conform}} expected-note{{do you want to add protocol stubs?}}
   func baz() -> Int { return 0 }
 }
 
@@ -53,7 +53,7 @@ extension P4 where Self : P4Helper {
   func bar() {} // expected-note {{candidate}}
 }
 
-struct P4Conformer : P4 { // expected-error {{does not conform}}
+struct P4Conformer : P4 { // expected-error {{does not conform}} expected-note 2 {{do you want to add protocol stubs?}}
   func baz() -> Int { return 0 }
 }
 
@@ -69,7 +69,7 @@ extension P5 {
   func bar() -> Foo { return foo() } // okay
 }
 
-struct P5Conformer : P5 { // expected-error {{does not conform}}
+struct P5Conformer : P5 { // expected-error {{does not conform}} expected-note{{do you want to add protocol stubs?}}
   func baz() -> Int { return 0 }
 }
 
@@ -88,11 +88,12 @@ extension P6 {
   func bar() -> Bar? { return nil }
 }
 
-struct P6Conformer : P6 { // expected-error 2 {{does not conform}}
+struct P6Conformer : P6 { // expected-error 2 {{does not conform}} expected-note 2 {{do you want to add protocol stubs?}}
   func foo() {}
 }
 
 // rdar://problem/23033862
+// expected-note@+3 2{{do you want to add protocol stubs?}}
 // expected-error@+2{{type 'A' does not conform to protocol 'OptionSet'}}
 // expected-error@+1{{type 'A' does not conform to protocol 'RawRepresentable'}}
 struct A: OptionSet {
@@ -106,18 +107,18 @@ protocol PA {
   associatedtype A // expected-note 3 {{protocol requires nested type 'A'; do you want to add it?}}
 }
 
-struct BadCase1 : PA { // expected-error {{type 'BadCase1' does not conform to protocol 'PA'}}
+struct BadCase1 : PA { // expected-error {{type 'BadCase1' does not conform to protocol 'PA'}} expected-note{{do you want to add protocol stubs?}}
   struct A<T> {}
 }
 
-struct BadCase2 : PA { // expected-error {{type 'BadCase2' does not conform to protocol 'PA'}}
+struct BadCase2 : PA { // expected-error {{type 'BadCase2' does not conform to protocol 'PA'}} expected-note{{do you want to add protocol stubs?}}
   typealias A<T> = T
 }
 
 // Variation on the above
 struct G<T> {}
 
-struct BadCase3 : PA { // expected-error {{type 'BadCase3' does not conform to protocol 'PA'}}
+struct BadCase3 : PA { // expected-error {{type 'BadCase3' does not conform to protocol 'PA'}} expected-note{{do you want to add protocol stubs?}}
   typealias A = G
 }
 
@@ -126,6 +127,7 @@ extension UInt32: ExpressibleByStringLiteral {}
 // expected-error@-1 {{type 'UInt32' does not conform to protocol 'ExpressibleByStringLiteral'}}
 // expected-error@-2 {{type 'UInt32' does not conform to protocol 'ExpressibleByExtendedGraphemeClusterLiteral'}}
 // expected-error@-3 {{type 'UInt32' does not conform to protocol 'ExpressibleByUnicodeScalarLiteral'}}
+// expected-note@-4 {{do you want to add protocol stubs?}}
 
 // After successfully type-checking this (due to the presumption of
 // the type actually conforming), do not crash when failing to find

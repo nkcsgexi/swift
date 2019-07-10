@@ -34,6 +34,7 @@ extension S {
 
 public struct T : S {}
 // expected-error@-1 {{type 'T' does not conform to protocol 'S'}}
+// expected-note@-2{{do you want to add protocol stubs?}}
 
 // This is also OK
 @usableFromInline

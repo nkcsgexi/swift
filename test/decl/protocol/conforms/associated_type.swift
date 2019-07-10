@@ -7,7 +7,7 @@ protocol P {
   associatedtype AssocA : AnyObject // expected-note{{protocol requires nested type 'AssocA'; do you want to add it?}}
 }
 
-struct X : P { // expected-error{{type 'X' does not conform to protocol 'P'}}
+struct X : P { // expected-error{{type 'X' does not conform to protocol 'P'}} expected-note 2 {{do you want to add protocol stubs?}}
   typealias AssocP = Int // expected-note{{possibly intended match 'X.AssocP' (aka 'Int') does not inherit from 'C'}}
   typealias AssocA = Int // expected-note{{possibly intended match 'X.AssocA' (aka 'Int') does not conform to 'AnyObject'}}
 }
@@ -67,6 +67,6 @@ struct X2a : P2 {
   func f(_: (Int) -> Int) { }
 }
 
-struct X2b : P2 { // expected-error{{type 'X2b' does not conform to protocol 'P2'}}
+struct X2b : P2 { // expected-error{{type 'X2b' does not conform to protocol 'P2'}} expected-note{{do you want to add protocol stubs?}}
   func f(_: @escaping (Int) -> Int) { } // expected-note{{candidate has non-matching type '(@escaping (Int) -> Int) -> ()'}}
 }

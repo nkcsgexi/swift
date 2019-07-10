@@ -55,6 +55,7 @@ extension HasDefault where Self == SillyClass {
 
 extension SillyClass : HasDefault {}
 // expected-error@-1 {{type 'SillyClass' does not conform to protocol 'HasDefault'}}
+// expected-note@-2{{do you want to add protocol stubs?}}
 
 // This is OK, though
 class SeriousClass {}

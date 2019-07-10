@@ -2696,18 +2696,20 @@ diagnoseMissingWitnesses(MissingWitnessDiagnosisKind Kind) {
       // Issue diagnostics for witness types.
       if (auto MissingTypeWitness = dyn_cast<AssociatedTypeDecl>(VD)) {
         Diags.diagnose(MissingTypeWitness, diag::no_witnesses_type,
-                       MissingTypeWitness->getName()).
-        fixItInsertAfter(FixitLocation, FixIt);
+                       MissingTypeWitness->getName());
+        Diags.diagnose(ComplainLoc, diag::missing_witnesses_general).
+                       fixItInsertAfter(FixitLocation, FixIt);
         continue;
       }
       // Issue diagnostics for witness values.
       Type RequirementType =
         getRequirementTypeForDisplay(DC->getParentModule(), Conf, VD);
-      auto Diag = Diags.diagnose(VD, diag::no_witnesses,
-                                 getRequirementKind(VD), VD->getFullName(),
-                                 RequirementType, AddFixit);
-      if (AddFixit)
-        Diag.fixItInsertAfter(FixitLocation, FixIt);
+      Diags.diagnose(VD, diag::no_witnesses, getRequirementKind(VD),
+                     VD->getFullName(), RequirementType, AddFixit);
+      if (AddFixit) {
+        Diags.diagnose(ComplainLoc, diag::missing_witnesses_general).
+          fixItInsertAfter(FixitLocation, FixIt);
+      }
     }
   };
 
