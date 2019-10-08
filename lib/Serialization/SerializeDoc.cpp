@@ -565,7 +565,7 @@ public:
     return None;
   }
   void emitUSRsRecord(llvm::BitstreamWriter &out) {
-    sourceinfo_block::DeclUSRSLayout USRsList(out);
+    decl_locs_block::DeclUSRSLayout USRsList(out);
     SmallVector<uint64_t, 8> scratch;
     llvm::SmallString<32> hashTableBlob;
     uint32_t tableOffset;
@@ -593,7 +593,7 @@ public:
   }
 
   void emitSourceFilesRecord(llvm::BitstreamWriter &Out) {
-    sourceinfo_block::TextDataLayout TextBlob(Out);
+    decl_locs_block::TextDataLayout TextBlob(Out);
     SmallVector<uint64_t, 8> scratch;
     TextBlob.emit(scratch, Buffer);
   }
@@ -713,7 +713,7 @@ static void emitBasicLocsRecord(llvm::BitstreamWriter &Out,
                                 ModuleOrSourceFile MSF, DeclUSRsTableWriter &USRWriter,
                                 StringWriter &FWriter) {
   assert(MSF);
-  const sourceinfo_block::BasicDeclLocsLayout DeclLocsList(Out);
+  const decl_locs_block::BasicDeclLocsLayout DeclLocsList(Out);
   BasicDeclLocsTableWriter Writer(USRWriter, FWriter);
   if (auto *SF = MSF.dyn_cast<SourceFile*>()) {
     SF->walk(Writer);
@@ -749,9 +749,9 @@ public:
     BLOCK_RECORD(control_block, TARGET);
 
     BLOCK(DECL_LOCS_BLOCK);
-    BLOCK_RECORD(sourceinfo_block, BASIC_DECL_LOCS);
-    BLOCK_RECORD(sourceinfo_block, DECL_USRS);
-    BLOCK_RECORD(sourceinfo_block, TEXT_DATA);
+    BLOCK_RECORD(decl_locs_block, BASIC_DECL_LOCS);
+    BLOCK_RECORD(decl_locs_block, DECL_USRS);
+    BLOCK_RECORD(decl_locs_block, TEXT_DATA);
 
 #undef BLOCK
 #undef BLOCK_RECORD
