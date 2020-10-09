@@ -179,7 +179,7 @@ static int run_driver(StringRef ExecName,
 
     // Execute the subcommand.
     subCommandArgs.push_back(nullptr);
-    Diags.diagnose(SourceLoc(), diag::remark_forwarding_to_new_driver);
+//    Diags.diagnose(SourceLoc(), diag::remark_forwarding_to_new_driver);
     ExecuteInPlace(NewDriverPath.c_str(), subCommandArgs.data());
 
     // If we reach here then an error occurred (typically a missing path).

@@ -168,29 +168,7 @@
 // LINK-SWIFTMODULES-ELF: 6: link, {1, 2, 3, 4, 5, 6}, image
 // LINK-SWIFTMODULES-MACHO: 6: link, {1, 2, 3, 4, 5}, image
 
-// RUN: %swiftc_driver -driver-print-actions -g %t/c.swift %t/a.o %t/b.o %t/a.swiftmodule %t/b.swiftmodule -o main 2>&1 | %FileCheck %s -check-prefix=LINK-DEBUG-SWIFTMODULES -check-prefix LINK-DEBUG-SWIFTMODULES-%target-object-format
-// LINK-DEBUG-SWIFTMODULES: 0: input, "{{.*}}/c.swift", swift
-// LINK-DEBUG-SWIFTMODULES: 1: compile, {0}, object
-// LINK-DEBUG-SWIFTMODULES: 2: input, "{{.*}}/a.o", object
-// LINK-DEBUG-SWIFTMODULES: 3: input, "{{.*}}/b.o", object
-// LINK-DEBUG-SWIFTMODULES: 4: input, "{{.*}}/a.swiftmodule", swiftmodule
-// LINK-DEBUG-SWIFTMODULES: 5: input, "{{.*}}/b.swiftmodule", swiftmodule
-// LINK-DEBUG-SWIFTMODULES: 6: merge-module, {1}, swiftmodule
-// LINK-DEBUG-SWIFTMODULES-COFF: 7: modulewrap, {6}, object
-// LINK-DEBUG-SWIFTMODULES-COFF: 8: link, {1, 2, 3, 4, 5, 7}, image
-// LINK-DEBUG-SWIFTMODULES-ELF: 7: modulewrap, {6}, object
-// LINK-DEBUG-SWIFTMODULES-ELF: 8: link, {1, 2, 3, 4, 5, 7}, image
-// LINK-DEBUG-SWIFTMODULES-MACHO: 7: link, {1, 2, 3, 4, 5, 6}, image
 
-// RUN: touch %t/a.o %t/b.o
-// RUN: %swiftc_driver -driver-print-actions %t/a.o %s -o main 2>&1 | %FileCheck %s -check-prefix=COMPILE-PLUS-OBJECT -check-prefix COMPILE-PLUS-OBJECT-%target-object-format
-// COMPILE-PLUS-OBJECT: 0: input, "{{.*}}/a.o", object
-// COMPILE-PLUS-OBJECT: 1: input, "{{.*}}actions.swift", swift
-// COMPILE-PLUS-OBJECT: 2: compile, {1}, object
-// COMPILE-PLUS-OBJECT-COFF: 3: link, {0, 2}, image
-// COMPILE-PLUS-OBJECT-ELF: 3: swift-autolink-extract, {0, 2}, autolink
-// COMPILE-PLUS-OBJECT-ELF: 4: link, {0, 2, 3}, image
-// COMPILE-PLUS-OBJECT-MACHO: 3: link, {0, 2}, image
 
 
 // RUN: %swiftc_driver -driver-print-actions %S/Inputs/main.swift %S/../Inputs/empty.swift %s -module-name actions -whole-module-optimization 2>&1 | %FileCheck %s -check-prefix=WHOLE-MODULE -check-prefix WHOLE-MODULE-%target-object-format

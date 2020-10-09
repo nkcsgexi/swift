@@ -96,15 +96,6 @@
 // LINK-SWIFTMODULES: 5: input, "{{.*}}/b.swiftmodule", swiftmodule
 // LINK-SWIFTMODULES: 6: link, {1, 2, 3, 4, 5}, image
 
-// RUN: %swiftc_driver -driver-print-actions -target x86_64-apple-macosx10.9 -g %t/c.swift %t/a.o %t/b.o %t/a.swiftmodule %t/b.swiftmodule -o main 2>&1 | %FileCheck %s -check-prefix=LINK-DEBUG-SWIFTMODULES
-// LINK-DEBUG-SWIFTMODULES: 0: input, "{{.*}}/c.swift", swift
-// LINK-DEBUG-SWIFTMODULES: 1: compile, {0}, object
-// LINK-DEBUG-SWIFTMODULES: 2: input, "{{.*}}/a.o", object
-// LINK-DEBUG-SWIFTMODULES: 3: input, "{{.*}}/b.o", object
-// LINK-DEBUG-SWIFTMODULES: 4: input, "{{.*}}/a.swiftmodule", swiftmodule
-// LINK-DEBUG-SWIFTMODULES: 5: input, "{{.*}}/b.swiftmodule", swiftmodule
-// LINK-DEBUG-SWIFTMODULES: 6: merge-module, {1}, swiftmodule
-// LINK-DEBUG-SWIFTMODULES: 7: link, {1, 2, 3, 4, 5, 6}, image
 
 // RUN: touch %t/a.o %t/b.o
 // RUN: %swiftc_driver -driver-print-actions -target x86_64-apple-macosx10.9 -g %S/Inputs/main.swift %S/../Inputs/empty.swift %s -module-name actions -whole-module-optimization 2>&1 | %FileCheck %s -check-prefix=WHOLE-MODULE
