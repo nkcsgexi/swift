@@ -1,3 +1,5 @@
+// REQUIRES: rdar70213716
+
 // RUN: %swiftc_driver -driver-print-jobs -target x86_64-apple-macosx10.9     -g -sdk %S/../Inputs/clang-importer-sdk %s 2>&1 | %FileCheck %s --check-prefix OSX
 // RUN: %swiftc_driver -driver-print-jobs -target x86_64-unknown-linux-gnu    -g -sdk %S/../Inputs/clang-importer-sdk %s 2>&1 | %FileCheck %s --check-prefix LINUX
 // RUN: %swiftc_driver -driver-print-jobs -target x86_64-unknown-freebsd      -g -sdk %S/../Inputs/clang-importer-sdk %s 2>&1 | %FileCheck %s --check-prefix FREEBSD
