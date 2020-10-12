@@ -1,3 +1,4 @@
+// REQUIRES: rdar70215624
 // XFAIL: freebsd, openbsd, linux, windows
 
 // Test SDK detection for immediate mode.
