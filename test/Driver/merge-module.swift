@@ -1,3 +1,4 @@
+// REQUIRES: verified
 // RUN: %swiftc_driver -emit-module -driver-print-jobs %s 2>&1 > %t.simple.txt
 // RUN: %FileCheck %s < %t.simple.txt
 // RUN: %FileCheck -check-prefix SIMPLE %s < %t.simple.txt
