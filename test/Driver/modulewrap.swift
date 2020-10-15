@@ -1,4 +1,4 @@
-// RUN: %swiftc_driver -driver-print-jobs -target x86_64-unknown-linux-gnu -g %s | %FileCheck %s
+// RUN: %swiftc_driver -driver-print-jobs -target x86_64-unknown-linux-gnu -g %s -driver-filelist-threshold=22222 | %FileCheck %s
 
 // CHECK: bin{{/|\\\\}}swift{{(-frontend|c)?(\.exe)?"?}} -frontend{{.*}}-emit-module-path [[MOD:.*\.swiftmodule]]
 // CHECK: bin{{/|\\\\}}swift{{(-frontend|c)?(\.exe)?"?}} {{.*}}-emit-module [[MOD]]
