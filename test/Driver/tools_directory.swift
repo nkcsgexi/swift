@@ -32,5 +32,5 @@
 
 // LDSUB: swift
 // LDSUB-SAME: -o [[OBJECTFILE:.*]]
-// LDSUB: {{[^ ]+(\\\\|/)}}Inputs{{/|\\\\}}fake-toolchain{{(\\\\|/)ld"?}} [[OBJECTFILE]]
+// LDSUB: {{[^ ]+(\\\\|/)}}Inputs{{/|\\\\}}fake-toolchain{{(\\\\|/)ld"?}}
 // LDSUB: -o tools_directory
