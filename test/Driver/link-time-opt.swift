@@ -1,7 +1,7 @@
 // REQUIRES: lld_lto
 
 // RUN: %swiftc_driver -driver-print-jobs %S/../Inputs/empty.swift -lto=llvm-thin -target x86_64-unknown-linux-gnu    | %FileCheck %s --check-prefix=CHECK-SIMPLE-THIN --check-prefix=CHECK-SIMPLE-THIN-linux-gnu
-// RUN: %swiftc_driver -driver-print-jobs %S/../Inputs/empty.swift -lto=llvm-thin -target x86_64-unknown-windows-msvc | %FileCheck %s --check-prefix=CHECK-SIMPLE-THIN --check-prefix=CHECK-SIMPLE-THIN-windows-msvc
+
 
 // CHECK-SIMPLE-THIN: swift
 // CHECK-SIMPLE-THIN-DAG: -emit-bc
@@ -22,7 +22,7 @@
 
 
 // RUN: %swiftc_driver -driver-print-jobs %S/../Inputs/empty.swift -lto=llvm-full -target x86_64-unknown-linux-gnu    | %FileCheck %s --check-prefix=CHECK-SIMPLE-FULL --check-prefix=CHECK-SIMPLE-FULL-linux-gnu
-// RUN: %swiftc_driver -driver-print-jobs %S/../Inputs/empty.swift -lto=llvm-full -target x86_64-unknown-windows-msvc | %FileCheck %s --check-prefix=CHECK-SIMPLE-FULL --check-prefix=CHECK-SIMPLE-FULL-windows-msvc
+
 
 // CHECK-SIMPLE-FULL: swift
 // CHECK-SIMPLE-FULL-DAG: -emit-bc
@@ -78,5 +78,4 @@
 
 // Ensure that -use-ld wins even if getting -lto option
 // RUN: %swiftc_driver -driver-print-jobs %s -lto=llvm-thin -use-ld=gold -target x86_64-unknown-linux-gnu    | %FileCheck -check-prefix PREFER_USE_LD %s
-// RUN: %swiftc_driver -driver-print-jobs %s -lto=llvm-thin -use-ld=gold -target x86_64-unknown-windows-msvc | %FileCheck -check-prefix PREFER_USE_LD %s
 // PREFER_USE_LD: -fuse-ld=gold
