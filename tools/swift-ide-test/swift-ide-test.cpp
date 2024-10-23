@@ -2521,7 +2521,6 @@ static int doPrintObjcMessageSends(const CompilerInvocation &InitInvok,
                                    bool TerminalOutput) {
   CompilerInvocation Invocation(InitInvok);
   Invocation.getFrontendOptions().InputsAndOutputs.addInputFile(SourceFilename);
-
   CompilerInstance CI;
 
   // Display diagnostics to stderr.
@@ -2534,17 +2533,13 @@ static int doPrintObjcMessageSends(const CompilerInvocation &InitInvok,
   }
   registerIDERequestFunctions(CI.getASTContext().evaluator);
   CI.performSema();
-
-  unsigned BufID = CI.getInputBufferIDs().back();
-  AnnotationPrinter AnnotPrinter(CI.getSourceMgr(), BufID, llvm::outs(),
-                                 TerminalOutput);
   
   class PrintConsumer: public ObjcMessageSendConsumer {
-    void found(StringRef name, StringRef filePath) override {
-      llvm::outs() << name << "\n";
+    void found(StringRef name, StringRef filePath, int lineNo) override {
+      llvm::errs() << filePath << lineNo << ": " << name << "\n";
     }
   } consumer;
-  indexObjcMessageSend(CI.getMainModule(), consumer);
+  indexObjcMessageSend(&CI.getMainModule()->getMainSourceFile(), consumer);
   return 0;
 }
 

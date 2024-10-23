@@ -2126,9 +2126,9 @@ void index::indexModule(ModuleDecl *module, IndexDataConsumer &consumer) {
   consumer.finish();
 }
 
-void index::indexObjcMessageSend(ModuleDecl *module,
+void index::indexObjcMessageSend(SourceFile *SF,
                                  ObjcMessageSendConsumer &consumer) {
-  assert(module);
+  assert(SF);
   class ObjcMessageConsumer: public IndexDataConsumer {
     ObjcMessageSendConsumer &consumer;
   public:
@@ -2139,7 +2139,7 @@ void index::indexObjcMessageSend(ModuleDecl *module,
 
     bool startDependency(StringRef name, StringRef path, bool isClangModule,
                          bool isSystem) override {
-      return false;
+      return true;
     }
     bool finishDependency(bool isClangModule) override {
       return true;
@@ -2153,12 +2153,10 @@ void index::indexObjcMessageSend(ModuleDecl *module,
         return Skip;
       if (auto *MD = dyn_cast_or_null<clang::ObjCMethodDecl>(symbol.decl
                                                              ->getClangDecl())) {
-        consumer.found(MD->getName().str(), "");
+        consumer.found(MD->getNameAsString(), "", symbol.line);
       }
       return Continue;
     }
   } localConsumer(consumer);
-  IndexSwiftASTWalker walker(localConsumer, module->getASTContext());
-  walker.visitModule(*module);
-  localConsumer.finish();
+  indexSourceFile(SF, localConsumer);
 }

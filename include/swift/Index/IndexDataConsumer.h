@@ -44,7 +44,7 @@ public:
 class ObjcMessageSendConsumer {
 public:
   virtual ~ObjcMessageSendConsumer() {}
-  virtual void found(StringRef name, StringRef filePath) = 0;
+  virtual void found(StringRef name, StringRef filePath, int lineNo) = 0;
 };
 
 } // end namespace index
