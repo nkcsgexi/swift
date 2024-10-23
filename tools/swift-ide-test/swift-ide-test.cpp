@@ -117,6 +117,7 @@ enum class ActionType {
   Range,
   TypeContextInfo,
   ConformingMethodList,
+  PrintObjcMessageSend,
 };
 
 class NullDebuggerClient : public DebuggerClient {
@@ -251,6 +252,9 @@ Action(llvm::cl::desc("Mode:"), llvm::cl::init(ActionType::None),
                       "Print types for all expressions in the file"),
            clEnumValN(ActionType::ConformingMethodList,
 	                    "conforming-methods",
+                      "Perform conforming method analysis for expression"),
+           clEnumValN(ActionType::PrintObjcMessageSend,
+                      "conforming-methods",
                       "Perform conforming method analysis for expression")));
 
 static llvm::cl::opt<std::string>
@@ -2512,6 +2516,38 @@ static int doSemanticAnnotation(const CompilerInvocation &InitInvok,
   return 0;
 }
 
+static int doPrintObjcMessageSends(const CompilerInvocation &InitInvok,
+                                   StringRef SourceFilename,
+                                   bool TerminalOutput) {
+  CompilerInvocation Invocation(InitInvok);
+  Invocation.getFrontendOptions().InputsAndOutputs.addInputFile(SourceFilename);
+
+  CompilerInstance CI;
+
+  // Display diagnostics to stderr.
+  PrintingDiagnosticConsumer PrintDiags;
+  CI.addDiagnosticConsumer(&PrintDiags);
+  std::string InstanceSetupError;
+  if (CI.setup(Invocation, InstanceSetupError)) {
+    llvm::errs() << InstanceSetupError << '\n';
+    return 1;
+  }
+  registerIDERequestFunctions(CI.getASTContext().evaluator);
+  CI.performSema();
+
+  unsigned BufID = CI.getInputBufferIDs().back();
+  AnnotationPrinter AnnotPrinter(CI.getSourceMgr(), BufID, llvm::outs(),
+                                 TerminalOutput);
+  
+  class PrintConsumer: public ObjcMessageSendConsumer {
+    void found(StringRef name, StringRef filePath) override {
+      llvm::outs() << name << "\n";
+    }
+  } consumer;
+  indexObjcMessageSend(CI.getMainModule(), consumer);
+  return 0;
+}
+
 static int doInputCompletenessTest(StringRef SourceFilename) {
   std::unique_ptr<llvm::MemoryBuffer> FileBuf;
   if (setBufferForFile(SourceFilename, FileBuf))
@@ -4746,7 +4782,11 @@ int main(int argc, char *argv[]) {
                                     options::SourceFilename,
                                     options::TerminalOutput);
     break;
-
+  case ActionType::PrintObjcMessageSend:
+    ExitCode = doPrintObjcMessageSends(InitInvok,
+                                       options::SourceFilename,
+                                       options::TerminalOutput);
+    break;
   case ActionType::TestInputCompleteness:
     ExitCode = doInputCompletenessTest(options::SourceFilename);
     break;

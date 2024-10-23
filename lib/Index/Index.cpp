@@ -29,6 +29,7 @@
 #include "swift/Basic/Assertions.h"
 #include "swift/Basic/SourceManager.h"
 #include "swift/Basic/StringExtras.h"
+#include "clang/AST/DeclObjC.h"
 #include "swift/IDE/SourceEntityWalker.h"
 #include "swift/IDE/Utils.h"
 #include "swift/Markup/Markup.h"
@@ -2123,4 +2124,41 @@ void index::indexModule(ModuleDecl *module, IndexDataConsumer &consumer) {
   IndexSwiftASTWalker walker(consumer, module->getASTContext());
   walker.visitModule(*module);
   consumer.finish();
+}
+
+void index::indexObjcMessageSend(ModuleDecl *module,
+                                 ObjcMessageSendConsumer &consumer) {
+  assert(module);
+  class ObjcMessageConsumer: public IndexDataConsumer {
+    ObjcMessageSendConsumer &consumer;
+  public:
+    ObjcMessageConsumer(ObjcMessageSendConsumer &consumer): consumer(consumer) {}
+    void finish() override {}
+    bool indexLocals() override { return true; }
+    void failed(StringRef error) override {}
+
+    bool startDependency(StringRef name, StringRef path, bool isClangModule,
+                         bool isSystem) override {
+      return false;
+    }
+    bool finishDependency(bool isClangModule) override {
+      return true;
+    }
+    bool finishSourceEntity(SymbolInfo symInfo, SymbolRoleSet roles) override {
+      return true;
+    }
+    Action startSourceEntity(const IndexSymbol &symbol) override {
+      //if (symbol.Relations[0] == SymbolRelation::Roles)
+      if (symbol.line == 0 || !symbol.decl)
+        return Skip;
+      if (auto *MD = dyn_cast_or_null<clang::ObjCMethodDecl>(symbol.decl
+                                                             ->getClangDecl())) {
+        consumer.found(MD->getName().str(), "");
+      }
+      return Continue;
+    }
+  } localConsumer(consumer);
+  IndexSwiftASTWalker walker(localConsumer, module->getASTContext());
+  walker.visitModule(*module);
+  localConsumer.finish();
 }

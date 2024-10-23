@@ -41,6 +41,12 @@ public:
   virtual void finish() {}
 };
 
+class ObjcMessageSendConsumer {
+public:
+  virtual ~ObjcMessageSendConsumer() {}
+  virtual void found(StringRef name, StringRef filePath) = 0;
+};
+
 } // end namespace index
 } // end namespace swift
 
