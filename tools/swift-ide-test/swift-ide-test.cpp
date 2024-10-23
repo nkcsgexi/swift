@@ -254,8 +254,8 @@ Action(llvm::cl::desc("Mode:"), llvm::cl::init(ActionType::None),
 	                    "conforming-methods",
                       "Perform conforming method analysis for expression"),
            clEnumValN(ActionType::PrintObjcMessageSend,
-                      "conforming-methods",
-                      "Perform conforming method analysis for expression")));
+                      "print-objc-method",
+                      "Print references to objc methods")));
 
 static llvm::cl::opt<std::string>
 SourceFilename("source-filename", llvm::cl::desc("Name of the source file"),
