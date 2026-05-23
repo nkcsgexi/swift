@@ -1981,11 +1981,23 @@ private:
     case TypeKind::Module:
     case TypeKind::BuiltinUnboundGeneric:
     case TypeKind::BuiltinBorrow:
-    case TypeKind::Hidden:
       ABORT([&](llvm::raw_ostream &out) {
         out << "Don't know how to emit debug info for type:\n";
         BaseTy->dump(out);
       });
+
+    case TypeKind::Hidden: {
+      // A HiddenType placeholder stands in for a C-imported type whose
+      // identity has been elided from the client's view. We can still emit
+      // a debug-info entry for it as an opaque struct of the right size and
+      // alignment, named by its mangled name. Loaded layout information is
+      // retrievable from the defining module via lookupHiddenTypeLayout, but
+      // for debug info we only need the size/alignment that CompletedDbgTy
+      // already carries.
+      unsigned FwdDeclLine = 0;
+      return createOpaqueStruct(Scope, MangledName, MainFile, FwdDeclLine,
+                                SizeInBits, AlignInBits, Flags, MangledName);
+    }
 
     case TypeKind::BuiltinFixedArray: {
       if (Opts.DebugInfoLevel > IRGenDebugInfoLevel::ASTTypes) {

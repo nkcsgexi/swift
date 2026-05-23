@@ -3457,6 +3457,12 @@ void TypeConverter::verifyTrivialLowering(const TypeLowering &lowering,
           if (isa<SILPackType>(ty) || isa<PackExpansionType>(ty))
             return true;
 
+          // A HiddenType placeholder is a leaf with no inner structure to
+          // walk; the visitor below will recognize it as a justified
+          // non-conforming trivial type.
+          if (isa<HiddenType>(ty))
+            return true;
+
           auto *nominal = ty.getAnyNominal();
           // Only pack-related non-nominal aggregates may be responsible for
           // non-conformance; walk into the rest.
@@ -3503,6 +3509,15 @@ void TypeConverter::verifyTrivialLowering(const TypeLowering &lowering,
 
           // The error type doesn't conform but is trivial (case (8)).
           if (isa<ErrorType>(ty))
+            return false;
+
+          // A HiddenType placeholder stands in for a C-imported type whose
+          // identity has been elided from the client's view (encap-c-decl).
+          // Under the V1 plain-C assumption it is trivially copyable but
+          // can't carry a conformance to BitwiseCopyable because it is not
+          // nominal. Treat it like ErrorType: a justified trivial leaf that
+          // doesn't conform.
+          if (isa<HiddenType>(ty))
             return false;
 
           // These show up in the context of non-conforming variadic generics
