@@ -1373,10 +1373,9 @@ namespace {
     SILType getType(VarDecl *field) {
       assert(field->getDeclContext() == TheStruct->getAnyNominal());
       auto silType = SILType::getPrimitiveAddressType(TheStruct);
-      auto fieldType = silType.getFieldType(
+      return silType.getFieldType(
           field, IGM.getSILModule(),
           IGM.getMaximalTypeExpansionContext());
-      return fieldType;
     }
 
     StructLayout performLayout(ArrayRef<const TypeInfo *> fieldTypes) {
