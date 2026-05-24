@@ -243,6 +243,14 @@ StructLayout::StructLayout(IRGenModule &IGM, std::optional<CanType> type,
     if (IGM.isResilient(decl, ResilienceExpansion::Minimal))
       IsKnownAlwaysFixedSize = IsNotFixedSize;
 
+    // Force non-loadable when the struct has hidden stored properties from an
+    // internal bridging header. The library-side compilation sees the real C
+    // type and would otherwise classify the struct as loadable; the client
+    // sees a HiddenType placeholder and classifies it as address-only. Both
+    // sides must agree.
+    if (decl->getAttrs().hasAttribute<HasHiddenStoredPropertiesAttr>())
+      IsLoadable = false;
+
     applyLayoutAttributes(IGM, decl, IsFixedLayout, MinimumAlign);
   }
 }

@@ -2603,6 +2603,17 @@ namespace {
         return handleAddressOnly(structType, properties);
       }
 
+      // Force address-only when the struct has hidden stored properties from
+      // an internal bridging header. Library sees the real C type and would
+      // otherwise classify the struct as loadable; client sees the HiddenType
+      // placeholder and classifies it as address-only. Both sides must agree.
+      if (D->getAttrs().hasAttribute<HasHiddenStoredPropertiesAttr>()) {
+        properties.setAddressOnly();
+        properties.setNonTrivial();
+        properties.setLexical(IsLexical);
+        return handleAddressOnly(structType, properties);
+      }
+
       if (D->isCxxNonTrivial()) {
         properties.setDefinitelyAddressableForDependencies();
         properties.setAddressOnly();

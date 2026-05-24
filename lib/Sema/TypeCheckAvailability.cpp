@@ -342,6 +342,22 @@ bool ExportContext::encapsulatedAsHiddenStoredProperty(
       DC->getASTContext().recordTypeToHideWhenEmittingModule(
           nominal->getDeclaredInterfaceType()->getCanonicalType(),
           layout->mangledName);
+      // Mark the enclosing struct so IRGen / SIL force address-only on both
+      // library and client sides of the cross-module ABI. Without this,
+      // library compiles the containing struct as loadable (it sees the real
+      // C type) while client compiles it as address-only (it sees the
+      // HiddenType placeholder), and the calling conventions disagree.
+      // V1 silently allows @frozen + hidden-stored-property; revisit when the
+      // feature de-experimentalizes.
+      if (auto *enclosingStruct =
+              dyn_cast_or_null<StructDecl>(DC->getInnermostTypeContext())) {
+        if (!enclosingStruct->getAttrs()
+                 .hasAttribute<HasHiddenStoredPropertiesAttr>()) {
+          auto &ctx = DC->getASTContext();
+          enclosingStruct->getAttrs().add(
+              new (ctx) HasHiddenStoredPropertiesAttr(/*IsImplicit=*/true));
+        }
+      }
       return true;
     }
   }
