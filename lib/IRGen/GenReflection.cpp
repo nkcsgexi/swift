@@ -962,6 +962,14 @@ private:
     case Field::Var: {
       auto var = field.getVarDecl();
       isLet = var->isLet();
+      if (auto ty = var->getInterfaceType()) {
+        if (IGM.Context.lookupTypeToHideWhenEmittingModule(
+                ty->getCanonicalType())) {
+          flags.setIsVar(!isLet);
+          addField(flags, Type(), std::nullopt);
+          return;
+        }
+      }
       break;
     }
     case Field::MissingMember:
