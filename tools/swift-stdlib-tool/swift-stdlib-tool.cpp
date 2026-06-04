@@ -525,15 +525,19 @@ int parse_macho(int fd, uint32_t offset, uint32_t size,
   readed = pread_all(fd, cmdp, sizeofcmds, offset);
   if (readed == sizeofcmds) {
     uint8_t *cmds = cmdp;
+    uint32_t cmds_left = sizeofcmds;
     for (uint32_t c = 0; c < mh.ncmds(); c++) {
       macho_load_command<T> *cmd;
-      if (size < sizeof(*cmd))
+      if (cmds_left < sizeof(*cmd))
         return log_vv("file is badly formed");
       cmd = (macho_load_command<T> *)cmds;
-      if (size < cmd->cmdsize())
+      uint32_t this_cmdsize = cmd->cmdsize();
+      if (this_cmdsize < sizeof(*cmd))
         return log_vv("file is badly formed");
-      cmds += cmd->cmdsize();
-      size -= cmd->cmdsize();
+      if (cmds_left < this_cmdsize)
+        return log_vv("file is badly formed");
+      cmds += this_cmdsize;
+      cmds_left -= this_cmdsize;
 
       if (dylibVisitor &&
           (cmd->cmd() == LC_LOAD_DYLIB || cmd->cmd() == LC_LOAD_WEAK_DYLIB ||
@@ -542,8 +546,10 @@ int parse_macho(int fd, uint32_t offset, uint32_t size,
         if (dylib->cmdsize() < dylib->name_offset())
           continue;
         char *name = (char *)dylib + dylib->name_offset();
-        size_t name_len =
-            strnlen(name, dylib->cmdsize() - dylib->name_offset());
+        size_t avail = dylib->cmdsize() - dylib->name_offset();
+        size_t name_len = strnlen(name, avail);
+        if (name_len == avail)
+          continue; // name is not NUL-terminated within the load command
         log_vv("  loads %.*s", (int)name_len, name);
 
 #define PREPREFIX "@rpath/"
@@ -726,6 +732,27 @@ std::string filename(std::string path) {
 bool directory_exists(const std::string &path) {
   struct stat st;
   return stat(path.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
+}
+
+// Reject library names that could escape the Swift library search directories
+// via an absolute path or a parent-directory ("..") component.
+static bool isUnsafeLibraryName(const std::string &name) {
+  if (name.empty())
+    return true;
+  if (name[0] == '/')
+    return true; // absolute
+  size_t start = 0;
+  for (;;) {
+    size_t slash = name.find('/', start);
+    size_t len =
+        (slash == std::string::npos) ? std::string::npos : slash - start;
+    if (name.compare(start, len, "..") == 0)
+      return true; // exact ".." component
+    if (slash == std::string::npos)
+      break;
+    start = slash + 1;
+  }
+  return false;
 }
 
 // This executable's own path.
@@ -1067,7 +1094,10 @@ int main(int argc, const char *argv[]) {
     } else if (0 == strcmp(argv[i], "--resource-destination")) {
       resource_dst_dir = std::string(argv[++i]);
     } else if (0 == strcmp(argv[i], "--resource-library")) {
-      resourceLibraries.push_back(std::string(argv[++i]));
+      std::string resourceLibrary = std::string(argv[++i]);
+      if (isUnsafeLibraryName(resourceLibrary))
+        fail("Unsafe --resource-library value: %s", resourceLibrary.c_str());
+      resourceLibraries.push_back(resourceLibrary);
     } else {
       fail("Unknown argument: %s", argv[i]);
     }
