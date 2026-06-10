@@ -332,29 +332,63 @@ bool ExportContext::encapsulatedAsHiddenStoredProperty(
 
   // Encapsulation applies. Record the hidden-type layout so it will be
   // serialized into this module's hidden-type layouts block.
-  if (auto *nominal = dyn_cast<NominalTypeDecl>(D)) {
-    if (auto layout = computeClangAbstractLayout(nominal)) {
-      auto *DC = getDeclContext();
-      DC->getParentModule()->recordHiddenTypeLayout(
-          layout->mangledName, *layout);
-      // Also record the canonical type so the serializer can substitute a
-      // HiddenType placeholder for stored-property references in the emitted
-      // .swiftmodule, without re-mangling at every VarDecl serialization site.
-      DC->getASTContext().recordTypeToHideWhenEmittingModule(
-          nominal->getDeclaredInterfaceType()->getCanonicalType(),
-          layout->mangledName);
-      auto *enclosingStruct =
-          dyn_cast_or_null<StructDecl>(DC->getInnermostTypeContext());
-      ASSERT(enclosingStruct &&
-             "encapsulated hidden stored property must be inside a struct");
-      if (!enclosingStruct->getAttrs()
-               .hasAttribute<HasHiddenStoredPropertiesAttr>()) {
-        auto &ctx = DC->getASTContext();
-        enclosingStruct->getAttrs().add(
-            new (ctx) HasHiddenStoredPropertiesAttr(/*IsImplicit=*/true));
+  auto *nominal = dyn_cast<NominalTypeDecl>(D);
+  if (!nominal)
+    return false;
+
+  // Move-only (~Copyable) non-trivial C++ types are not yet supported as
+  // encapsulated hidden stored properties: the client must dispatch move and
+  // destroy through a value witness table, but a non-copyable type cannot be
+  // expressed in the current {bitwiseCopyable, opaque} layout encoding. Reject
+  // with a clear error rather than recording a layout that would miscompile.
+  if (auto *structDecl = dyn_cast<StructDecl>(nominal)) {
+    if (structDecl->isCxxNonTrivial() && !structDecl->canBeCopyable()) {
+      // Exportability checking visits the same field reference several times
+      // (the property, the synthesized memberwise initializer, accessors, ...).
+      // Diagnose only once per type.
+      if (getDeclContext()->getParentModule()
+              ->shouldDiagnoseNonCopyableHiddenType(structDecl)) {
+        auto &ctx = getDeclContext()->getASTContext();
+        SourceLoc loc;
+        if (auto *typeCtx = getDeclContext()->getInnermostTypeContext())
+          loc = typeCtx->getAsDecl()->getLoc();
+        ctx.Diags.diagnose(loc, diag::hidden_stored_property_noncopyable_cxx,
+                           nominal);
       }
+      // Suppress the generic exportability diagnostic; ours is more specific.
       return true;
     }
+  }
+
+  if (auto layout = computeClangAbstractLayout(nominal)) {
+    auto *DC = getDeclContext();
+    DC->getParentModule()->recordHiddenTypeLayout(
+        layout->mangledName, *layout);
+    // Also record the canonical type so the serializer can substitute a
+    // HiddenType placeholder for stored-property references in the emitted
+    // .swiftmodule, without re-mangling at every VarDecl serialization site.
+    DC->getASTContext().recordTypeToHideWhenEmittingModule(
+        nominal->getDeclaredInterfaceType()->getCanonicalType(),
+        layout->mangledName);
+    // For opaque (copyable non-trivial C++) hidden types, the defining module
+    // must emit a client-linkable value witness table. Record the defining
+    // StructDecl so IRGen can force-emit its metadata + a public accessor.
+    if (layout->isOpaque) {
+      if (auto *structDecl = dyn_cast<StructDecl>(nominal))
+        DC->getParentModule()->recordOpaqueHiddenTypeToEmit(
+            const_cast<StructDecl *>(structDecl));
+    }
+    auto *enclosingStruct =
+        dyn_cast_or_null<StructDecl>(DC->getInnermostTypeContext());
+    ASSERT(enclosingStruct &&
+           "encapsulated hidden stored property must be inside a struct");
+    if (!enclosingStruct->getAttrs()
+             .hasAttribute<HasHiddenStoredPropertiesAttr>()) {
+      auto &ctx = DC->getASTContext();
+      enclosingStruct->getAttrs().add(
+          new (ctx) HasHiddenStoredPropertiesAttr(/*IsImplicit=*/true));
+    }
+    return true;
   }
   return false;
 }

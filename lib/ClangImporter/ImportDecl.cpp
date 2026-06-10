@@ -11394,8 +11394,14 @@ swift::computeClangAbstractLayout(const NominalTypeDecl *decl) {
   Type swiftType = decl->getDeclaredInterfaceType();
   result.bitwiseCopyable = swiftType->isBitwiseCopyable();
 
+  // A non-trivial C++ type (non-trivial copy/move/destroy) cannot be lowered as
+  // a trivial blob: the client must dispatch copy/take/destroy through a value
+  // witness table the defining module exports. Mark it opaque. Scope this to
+  // *copyable* C++ types for now (encap-c-decl copyable-only milestone); the
+  // move-only (~Copyable) case is diagnosed at the Sema gate, not recorded.
   if (auto *structDecl = dyn_cast<StructDecl>(decl))
-    result.isOpaque = structDecl->isCxxNonTrivial();
+    result.isOpaque =
+        structDecl->isCxxNonTrivial() && structDecl->canBeCopyable();
   else
     result.isOpaque = false;
 

@@ -19,12 +19,14 @@
 #include "swift/AST/IRGenOptions.h"
 #include "swift/AST/ProtocolAssociations.h"
 #include "swift/AST/ProtocolConformance.h"
+#include "swift/AST/Module.h"
 #include "swift/Basic/Assertions.h"
 #include "swift/Basic/Platform.h"
 #include "swift/Demangling/ManglingMacros.h"
 #include "swift/Demangling/Demangle.h"
 #include "swift/ABI/MetadataValues.h"
 #include "swift/ClangImporter/ClangModule.h"
+#include "llvm/ADT/Twine.h"
 #include "llvm/Support/SaveAndRestore.h"
 
 using namespace swift;
@@ -580,4 +582,20 @@ IRGenMangler::mangleConformanceSymbol(Type type,
   appendProtocolConformance(Conformance);
   appendOperator(Op);
   return finalize();
+}
+
+std::string IRGenMangler::mangleExportedHiddenTypeMetadataAccessFunction(
+    Type type, ModuleDecl *definingModule) {
+  // The type's ordinary (verified) metadata-accessor mangling, e.g.
+  // "$sSo8MyStringVMa". Computed identically by the defining module (from the
+  // real C++ type) and by the client (from the HiddenType placeholder), since
+  // HiddenType mangles to exactly the C++ type's stored mangled name.
+  std::string typeAccessor = mangleTypeMetadataAccessFunction(type);
+  // Prefix with a non-Swift-mangled, module-scoped marker. Not `$s`-prefixed,
+  // so it bypasses demangling round-trip verification and is distinct from the
+  // type's linkonce_odr foreign accessor; the module name keeps it collision-
+  // free when several modules encapsulate the same C++ type.
+  return (llvm::Twine("__swift_encap_vwt_accessor_") +
+          definingModule->getName().str() + "_" + typeAccessor)
+      .str();
 }

@@ -143,6 +143,16 @@ public:
     return mangleTypeSymbol(type, "Ma");
   }
 
+  /// Mangle the symbol for a publicly-exported, module-scoped metadata accessor
+  /// for an encapsulated hidden C++ type. The result is intentionally NOT a
+  /// `$s`-prefixed Swift mangling (so it bypasses round-trip verification and
+  /// never collides with the type's ordinary `…Ma` foreign accessor); it is a
+  /// composite of the defining module name and the type's standard accessor
+  /// mangling, which both the defining module and the client can reproduce.
+  std::string
+  mangleExportedHiddenTypeMetadataAccessFunction(Type type,
+                                                 ModuleDecl *definingModule);
+
   std::string
   mangleCanonicalSpecializedGenericTypeMetadataAccessFunction(Type type) {
     return mangleTypeSymbol(type, "Mb");

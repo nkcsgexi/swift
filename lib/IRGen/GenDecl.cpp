@@ -1351,6 +1351,19 @@ deleteAndReenqueueForEmissionValuesDependentOnCanonicalPrespecializedMetadataRec
 
 /// Emit any lazy definitions (of globals or functions or whatever
 /// else) that we require.
+void IRGenerator::emitExportedHiddenTypeWitnesses() {
+  auto *module = SIL.getSwiftModule();
+  auto types = module->getOpaqueHiddenTypesToEmit();
+  if (types.empty())
+    return;
+
+  // Emit once, from the primary module, so multi-file builds don't each define
+  // the accessor. (It is weak_odr, so a stray duplicate would still merge.)
+  IRGenModule *IGM = getPrimaryIGM();
+  for (StructDecl *decl : types)
+    IGM->emitExportedHiddenTypeMetadataAccessor(decl);
+}
+
 void IRGenerator::emitLazyDefinitions() {
   if (SIL.getASTContext().LangOpts.hasFeature(Feature::Embedded)) {
     // In embedded Swift, the compiler cannot emit any metadata, etc.
@@ -1369,6 +1382,13 @@ void IRGenerator::emitLazyDefinitions() {
     // LazyClassMetadata is allowed
     // LazySpecializedClassMetadata is allowed
   }
+
+  // Force-emit witnesses for encapsulated hidden C++ types so clients without
+  // the C++ header can dispatch value operations. This populates
+  // LazyTypeMetadata, which the loop below drains. Not applicable in embedded
+  // Swift (which cannot emit this metadata).
+  if (!SIL.getASTContext().LangOpts.hasFeature(Feature::Embedded))
+    emitExportedHiddenTypeWitnesses();
 
   while (!LazyTypeMetadata.empty() ||
          !LazySpecializedTypeMetadataRecords.empty() ||
@@ -5069,7 +5089,74 @@ IRGenModule::getAddrOfTypeMetadataAccessFunction(CanType type,
   return entry;
 }
 
-/// Fetch the opaque type descriptor access function.
+/// Fetch the publicly-exported, module-scoped metadata accessor for an
+/// encapsulated hidden C++ type. Clients without the C++ header reference this
+/// to reach the type's value witness table.
+llvm::Function *
+IRGenModule::getAddrOfExportedHiddenTypeMetadataAccessFunction(
+    CanType type, ModuleDecl *definingModule, ForDefinition_t forDefinition) {
+  assert(!type->hasArchetype() && !type->hasTypeParameter());
+
+  LinkEntity entity =
+      LinkEntity::forExportedHiddenTypeMetadataAccessFunction(type,
+                                                              definingModule);
+  llvm::Function *&entry = GlobalFuncs[entity];
+  if (entry) {
+    if (forDefinition)
+      updateLinkageForDefinition(*this, entry, entity);
+    return entry;
+  }
+
+  // Same signature as an ordinary type metadata accessor:
+  //   %swift.metadata_response (i<n> %request)
+  llvm::Type *params[] = {getTypeMetadataRequestParamTy()};
+  auto fnType =
+      llvm::FunctionType::get(getTypeMetadataResponseTy(), params, false);
+  Signature signature(fnType, llvm::AttributeList(), SwiftCC);
+  LinkInfo link = LinkInfo::get(*this, entity, forDefinition);
+  entry = createFunction(*this, link, signature);
+  return entry;
+}
+
+void IRGenModule::emitExportedHiddenTypeMetadataAccessor(StructDecl *decl) {
+  // Only meaningful for a Clang-imported C++ record. The witnesses in the
+  // foreign metadata's value witness table call the C++ special members and
+  // bake in foreign-exception traps; that is why they must be emitted here, in
+  // the C++-interop-enabled defining module, rather than in the client.
+  assert(decl->getClangDecl() && "expected a Clang-imported C++ type");
+
+  CanType type = decl->getDeclaredInterfaceType()->getCanonicalType();
+
+  // Force the foreign type metadata (and its attached value witness table and
+  // linkonce_odr foreign accessor) to be emitted, even if this module never
+  // uses the type by value otherwise.
+  IRGen.noteUseOfTypeMetadata(decl);
+
+  llvm::Function *accessor = getAddrOfExportedHiddenTypeMetadataAccessFunction(
+      type, getSwiftModule(), ForDefinition);
+  if (!accessor->isDeclaration())
+    return;
+
+  // weak_odr + (exported) visibility: stays in the dynamic symbol table so a
+  // client in another image can bind it, and merges across translation units
+  // of the defining module without a duplicate-symbol error. (Plain External
+  // would collide across TUs; linkonce_odr can be auto-hidden and dropped from
+  // the export table.) Visibility/DLL storage were already set as "exported"
+  // by LinkInfo for the Public linkage of this kind.
+  accessor->setLinkage(llvm::GlobalValue::WeakODRLinkage);
+
+  // Body: forward to the (non-exported) foreign metadata accessor.
+  llvm::Function *foreign =
+      getAddrOfTypeMetadataAccessFunction(type, NotForDefinition);
+
+  IRGenFunction IGF(*this, accessor);
+  Explosion params = IGF.collectParameters();
+  auto *call = IGF.Builder.CreateCall(foreign->getFunctionType(), foreign,
+                                      params.claimAll());
+  call->setCallingConv(SwiftCC);
+  call->setDoesNotThrow();
+  IGF.Builder.CreateRet(call);
+}
 FunctionPointer IRGenModule::getAddrOfOpaqueTypeDescriptorAccessFunction(
     OpaqueTypeDecl *decl, ForDefinition_t forDefinition, bool implementation) {
   IRGen.noteUseOfOpaqueTypeDescriptor(decl);

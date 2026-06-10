@@ -4003,6 +4003,10 @@ ERROR(conformance_from_implementation_only_module,none,
       (Type, Identifier, unsigned, Identifier, unsigned))
 NOTE(assoc_conformance_from_implementation_only_module,none,
      "in associated type %0 (inferred as %1)", (Type, Type))
+ERROR(hidden_stored_property_noncopyable_cxx,none,
+      "non-copyable C++ type %0 cannot be encapsulated as a hidden stored "
+      "property via the internal bridging header",
+      (const ValueDecl *))
 ERROR(unexportable_clang_function_type,none,
       "cannot export the underlying C type of the function type %0; "
       "it may use anonymous types or types defined outside of a module",

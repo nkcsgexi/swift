@@ -75,6 +75,7 @@ namespace swift {
   class ProtocolConformance;
   struct PrintOptions;
   class SourceLookupCache;
+  class StructDecl;
   class Type;
   class ValueDecl;
   class VisibleDeclConsumer;
@@ -892,6 +893,16 @@ private:
   /// Storage for hidden-type layouts recorded via recordHiddenTypeLayout.
   llvm::StringMap<AbstractTypeLayout> HiddenTypeLayouts;
 
+  /// Opaque (copyable non-trivial C++) hidden types this module encapsulates,
+  /// for which IRGen must force-emit foreign metadata and a client-linkable
+  /// public value-witness accessor. Insertion order; deduplicated.
+  llvm::SmallSetVector<StructDecl *, 2> OpaqueHiddenTypesToEmit;
+
+  /// C++ hidden types already diagnosed as non-copyable, so the "non-copyable
+  /// C++ hidden type" error is emitted once rather than once per reference
+  /// visited during exportability checking.
+  llvm::SmallPtrSet<const StructDecl *, 2> DiagnosedNonCopyableHiddenTypes;
+
 public:
   void setCacheKey(const std::string &key) { CacheKey = key; }
   StringRef getCacheKey() const { return CacheKey; }
@@ -1304,6 +1315,18 @@ public:
   /// reproducible serialization output.
   SmallVector<std::pair<StringRef, AbstractTypeLayout>, 4>
   getSortedHiddenTypeLayouts() const;
+
+  /// Record an opaque (copyable non-trivial C++) hidden type that IRGen must
+  /// force-emit a client-linkable value-witness accessor for. Deduplicated.
+  void recordOpaqueHiddenTypeToEmit(StructDecl *decl);
+
+  /// The opaque hidden types this module must emit witnesses for, in a stable
+  /// order.
+  ArrayRef<StructDecl *> getOpaqueHiddenTypesToEmit() const;
+
+  /// Returns true the first time \p decl is passed (recording it), so the
+  /// non-copyable C++ hidden-type diagnostic is emitted only once.
+  bool shouldDiagnoseNonCopyableHiddenType(const StructDecl *decl);
 
   static bool classof(const DeclContext *DC) {
     if (auto D = DC->getAsDecl())

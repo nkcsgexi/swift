@@ -182,6 +182,10 @@ std::string LinkEntity::mangleAsString(ASTContext &Ctx) const {
   case Kind::TypeMetadataAccessFunction:
     return mangler.mangleTypeMetadataAccessFunction(getType());
 
+  case Kind::ExportedHiddenTypeMetadataAccessFunction:
+    return mangler.mangleExportedHiddenTypeMetadataAccessFunction(
+        getType(), getHiddenTypeDefiningModule());
+
   case Kind::CanonicalSpecializedGenericTypeMetadataAccessFunction:
     return mangler.mangleCanonicalSpecializedGenericTypeMetadataAccessFunction(
         getType());
@@ -793,6 +797,13 @@ SILLinkage LinkEntity::getLinkage(ForDefinition_t forDefinition) const {
     }
     llvm_unreachable("bad metadata access kind");
 
+  case Kind::ExportedHiddenTypeMetadataAccessFunction:
+    // Uniquely owned by the defining module and externally linkable by clients
+    // that lack the C++ header. The emitter forces weak_odr + default
+    // visibility so the symbol stays exported and merges across translation
+    // units of the defining module.
+    return getSILLinkage(FormalLinkage::PublicUnique, forDefinition);
+
   case Kind::CanonicalSpecializedGenericTypeMetadataAccessFunction:
     return SILLinkage::Shared;
 
@@ -1078,6 +1089,7 @@ bool LinkEntity::isContextDescriptor() const {
   case Kind::ValueWitnessTable:
   case Kind::TypeMetadata:
   case Kind::TypeMetadataAccessFunction:
+  case Kind::ExportedHiddenTypeMetadataAccessFunction:
   case Kind::CanonicalSpecializedGenericTypeMetadataAccessFunction:
   case Kind::TypeMetadataLazyCacheVariable:
   case Kind::TypeMetadataDemanglingCacheVariable:
@@ -1373,6 +1385,7 @@ bool LinkEntity::isText() const {
   case Kind::ProtocolConformanceDescriptor:
   case Kind::ProtocolConformanceDescriptorRecord:
   case Kind::TypeMetadataAccessFunction:
+  case Kind::ExportedHiddenTypeMetadataAccessFunction:
     return true;
   case Kind::DispatchThunkAsyncFunctionPointer:
   case Kind::DistributedThunkAsyncFunctionPointer:
@@ -1511,7 +1524,8 @@ bool LinkEntity::isWeakImported(ModuleDecl *module) const {
   }
 
   case Kind::TypeMetadata:
-  case Kind::TypeMetadataAccessFunction: {
+  case Kind::TypeMetadataAccessFunction:
+  case Kind::ExportedHiddenTypeMetadataAccessFunction: {
     if (auto *nominalDecl = getType()->getAnyNominal())
       return nominalDecl->isWeakImported(module);
     return false;
@@ -1728,6 +1742,10 @@ DeclContext *LinkEntity::getDeclContextForEmission() const {
     
     return nullptr;
   }
+
+  case Kind::ExportedHiddenTypeMetadataAccessFunction:
+    // Owned and emitted by the defining module that encapsulates the C++ type.
+    return getHiddenTypeDefiningModule();
 
   // Always shared linkage
   case Kind::ModuleDescriptor:

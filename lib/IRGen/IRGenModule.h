@@ -481,6 +481,11 @@ public:
   /// Emit everything which is reachable from already emitted IR.
   void emitLazyDefinitions();
 
+  /// Force-emit foreign metadata + a public, module-scoped, client-linkable
+  /// metadata accessor for each encapsulated hidden (copyable, non-trivial)
+  /// C++ type this module owns. Run before draining the lazy worklist.
+  void emitExportedHiddenTypeWitnesses();
+
   void addLazyFunction(SILFunction *f);
 
   void addLazyGlobalVariable(SILGlobalVariable *v);
@@ -1842,6 +1847,14 @@ public:
                                              ForDefinition_t forDefinition);
   llvm::Function *getAddrOfTypeMetadataAccessFunction(CanType type,
                                                ForDefinition_t forDefinition);
+  /// The publicly-exported, module-scoped metadata accessor for an encapsulated
+  /// hidden C++ type \p type owned by \p definingModule. Clients without the
+  /// C++ header reference this to reach the type's value witness table.
+  llvm::Function *getAddrOfExportedHiddenTypeMetadataAccessFunction(
+      CanType type, ModuleDecl *definingModule, ForDefinition_t forDefinition);
+  /// Force-emit the foreign metadata for \p decl and define its exported
+  /// hidden-type metadata accessor (forwarding to the foreign accessor).
+  void emitExportedHiddenTypeMetadataAccessor(StructDecl *decl);
   llvm::Function *getAddrOfGenericTypeMetadataAccessFunction(
                                              NominalTypeDecl *nominal,
                                              ArrayRef<llvm::Type *> genericArgs,

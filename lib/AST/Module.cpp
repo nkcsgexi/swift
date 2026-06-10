@@ -2345,6 +2345,18 @@ ModuleDecl::getSortedHiddenTypeLayouts() const {
   return result;
 }
 
+void ModuleDecl::recordOpaqueHiddenTypeToEmit(StructDecl *decl) {
+  OpaqueHiddenTypesToEmit.insert(decl);
+}
+
+ArrayRef<StructDecl *> ModuleDecl::getOpaqueHiddenTypesToEmit() const {
+  return OpaqueHiddenTypesToEmit.getArrayRef();
+}
+
+bool ModuleDecl::shouldDiagnoseNonCopyableHiddenType(const StructDecl *decl) {
+  return DiagnosedNonCopyableHiddenTypes.insert(decl).second;
+}
+
 //===----------------------------------------------------------------------===//
 // Cross-Import Overlays
 //===----------------------------------------------------------------------===//

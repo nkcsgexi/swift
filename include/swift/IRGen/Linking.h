@@ -463,6 +463,15 @@ class LinkEntity {
     /// The pointer is a canonical TypeBase*.
     TypeMetadataAccessFunction,
 
+    /// A publicly-exported, module-scoped access function for the metadata of a
+    /// hidden (encapsulated) non-trivial C++ type. Lets a client that lacks the
+    /// C++ header dispatch value operations through the type's value witness
+    /// table without regenerating its (linkonce_odr, non-exported) foreign
+    /// metadata. The pointer is a canonical TypeBase* (the real C++ type in the
+    /// defining module; the HiddenType placeholder in the client);
+    /// SecondaryPointer is the defining ModuleDecl* used to scope the symbol.
+    ExportedHiddenTypeMetadataAccessFunction,
+
     /// A lazy cache variable for type metadata.
     /// The pointer is a canonical TypeBase*.
     TypeMetadataLazyCacheVariable,
@@ -917,6 +926,15 @@ public:
   static LinkEntity forTypeMetadataAccessFunction(CanType type) {
     LinkEntity entity;
     entity.setForType(Kind::TypeMetadataAccessFunction, type);
+    return entity;
+  }
+
+  static LinkEntity
+  forExportedHiddenTypeMetadataAccessFunction(CanType type,
+                                              ModuleDecl *definingModule) {
+    LinkEntity entity;
+    entity.setForType(Kind::ExportedHiddenTypeMetadataAccessFunction, type);
+    entity.SecondaryPointer = definingModule;
     return entity;
   }
 
@@ -1757,6 +1775,10 @@ public:
   CanType getType() const {
     assert(isTypeKind(getKind()));
     return CanType(reinterpret_cast<TypeBase*>(Pointer));
+  }
+  ModuleDecl *getHiddenTypeDefiningModule() const {
+    assert(getKind() == Kind::ExportedHiddenTypeMetadataAccessFunction);
+    return reinterpret_cast<ModuleDecl *>(SecondaryPointer);
   }
   ValueWitness getValueWitness() const {
     assert(getKind() == Kind::ValueWitness);
