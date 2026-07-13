@@ -132,3 +132,53 @@ func test_addr_only_struct() -> Int32 {
   return struct_with_signed_val.secure_func_ptr1()
 }
 
+// A nested ptrauth struct imports as a Swift struct (not OpaquePointer); its
+// fields are read through signed accesses.
+// CHECK-LABEL: sil hidden [ossa] @$s25ptrauth_field_fptr_import012test_nested_B5_reads5Int32VyF :
+// CHECK: global_addr @ptr_to_nested_secure_struct : $*Optional<UnsafeMutablePointer<NestedSecureStruct>>
+// CHECK: [[ELEM:%.*]] = struct_element_addr {{%.*}} : $*NestedSecureStruct, #NestedSecureStruct.secure_func_ptr3
+// CHECK: [[SIGNED:%.*]] = begin_access [read] [signed] [[ELEM]] : $*Optional<@convention(c) () -> Int32>
+// CHECK: load [trivial] [[SIGNED]] : $*Optional<@convention(c) () -> Int32>
+// CHECK: end_access [[SIGNED]] : $*Optional<@convention(c) () -> Int32>
+// CHECK-LABEL: } // end sil function '$s25ptrauth_field_fptr_import012test_nested_B5_reads5Int32VyF'
+func test_nested_field_read() -> Int32 {
+  let fn = ptr_to_nested_secure_struct!.pointee.secure_func_ptr3!
+  return fn()
+}
+
+// Signed access reaches a ptrauth field nested inside the embedded struct.
+// CHECK-LABEL: sil hidden [ossa] @$s25ptrauth_field_fptr_import017test_nested_base_B5_reads5Int32VyF :
+// CHECK: [[BASE:%.*]] = struct_element_addr {{%.*}} : $*NestedSecureStruct, #NestedSecureStruct.base
+// CHECK: [[ELEM:%.*]] = struct_element_addr [[BASE]] : $*AddressDiscriminatedSecureStruct, #AddressDiscriminatedSecureStruct.secure_func_ptr1
+// CHECK: [[SIGNED:%.*]] = begin_access [read] [signed] [[ELEM]] : $*Optional<@convention(c) () -> Int32>
+// CHECK: end_access [[SIGNED]] : $*Optional<@convention(c) () -> Int32>
+// CHECK-LABEL: } // end sil function '$s25ptrauth_field_fptr_import017test_nested_base_B5_reads5Int32VyF'
+func test_nested_base_field_read() -> Int32 {
+  let fn = ptr_to_nested_secure_struct!.pointee.base.secure_func_ptr1!
+  return fn()
+}
+
+// The nested struct gets a memberwise initializer so it can be filled in from
+// Swift.
+// CHECK-LABEL: sil hidden [ossa] @$s25ptrauth_field_fptr_import21test_construct_nestedySo18NestedSecureStructVSo020AddressDiscriminatediJ0VF :
+// CHECK: [[INIT:%.*]] = function_ref @$sSo18NestedSecureStructV4base16secure_func_ptr3ABSo020AddressDiscriminatedbC0V_s5Int32VyXCSgtcfC
+// CHECK: apply [[INIT]](
+// CHECK-LABEL: } // end sil function '$s25ptrauth_field_fptr_import21test_construct_nestedySo18NestedSecureStructVSo020AddressDiscriminatediJ0VF'
+//
+// The initializer copies the base struct (re-signing its pointers) and signs the
+// direct ptrauth field on init.
+// CHECK-LABEL: sil shared [transparent] [serialized] [ossa] @$sSo18NestedSecureStructV4base16secure_func_ptr3ABSo020AddressDiscriminatedbC0V_s5Int32VyXCSgtcfC :
+// CHECK: bb0([[SELF:%.*]] : $*NestedSecureStruct, [[BASEARG:%.*]] : $*AddressDiscriminatedSecureStruct, [[FP:%.*]] : $Optional<@convention(c) () -> Int32>,
+// CHECK: [[BASEDST:%.*]] = struct_element_addr [[SELF]] : $*NestedSecureStruct, #NestedSecureStruct.base
+// CHECK: copy_addr [[BASEARG]] to [init] [[BASEDST]] : $*AddressDiscriminatedSecureStruct
+// CHECK: [[FPDST:%.*]] = struct_element_addr [[SELF]] : $*NestedSecureStruct, #NestedSecureStruct.secure_func_ptr3
+// CHECK: [[SIGNED:%.*]] = begin_access [init] [signed] [[FPDST]] : $*Optional<@convention(c) () -> Int32>
+// CHECK: store [[FP]] to [trivial] [[SIGNED]] : $*Optional<@convention(c) () -> Int32>
+// CHECK: end_access [[SIGNED]] : $*Optional<@convention(c) () -> Int32>
+// CHECK-LABEL: } // end sil function '$sSo18NestedSecureStructV4base16secure_func_ptr3ABSo020AddressDiscriminatedbC0V_s5Int32VyXCSgtcfC'
+func test_construct_nested(
+  _ base: AddressDiscriminatedSecureStruct
+) -> NestedSecureStruct {
+  return NestedSecureStruct(base: base, secure_func_ptr3: nil)
+}
+

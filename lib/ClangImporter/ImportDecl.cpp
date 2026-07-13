@@ -989,6 +989,37 @@ static bool shouldEagerlyImportClangRecordMember(const clang::NamedDecl *decl,
 }
 
 namespace {
+  /// Whether a C record is non-trivial to copy *only* because of
+  /// address-diversified `__ptrauth` pointers (looking through nested
+  /// aggregates). Such records can still be imported as Swift structs; records
+  /// non-trivial for other reasons (ARC, C++ special members) cannot.
+  static bool
+  isNonTrivialToPrimitiveCopyOnlyDueToPtrAuth(const clang::RecordDecl *decl) {
+    if (!decl->isCompleteDefinition())
+      return true;
+
+    for (auto *field : decl->fields()) {
+      switch (field->getType().isNonTrivialToPrimitiveCopy()) {
+      case clang::QualType::PCK_Trivial:
+      case clang::QualType::PCK_VolatileTrivial:
+      case clang::QualType::PCK_PtrAuth:
+        continue;
+      case clang::QualType::PCK_Struct:
+        // Look through a nested struct (or array of structs).
+        if (auto *nested = field->getType()
+                               ->getBaseElementTypeUnsafe()
+                               ->getAsRecordDecl())
+          if (isNonTrivialToPrimitiveCopyOnlyDueToPtrAuth(nested))
+            continue;
+        return false;
+      case clang::QualType::PCK_ARCStrong:
+      case clang::QualType::PCK_ARCWeak:
+        return false;
+      }
+    }
+    return true;
+  }
+
   /// Search the member tables for this class and its superclasses and try to
   /// identify the nearest VarDecl that serves as a base for an override.  We
   /// have to do this ourselves because Objective-C has no semantic notion of
@@ -2399,23 +2430,6 @@ namespace {
         return nullptr;
       }
 
-      auto isNonTrivialDueToAddressDiversifiedPtrAuth =
-          [](const clang::RecordDecl *decl) {
-            if (!decl->isCompleteDefinition())
-              return true;
-
-            for (auto *field : decl->fields()) {
-              if (!field->getType().isNonTrivialToPrimitiveCopy()) {
-                continue;
-              }
-              if (field->getType().isNonTrivialToPrimitiveCopy() !=
-                  clang::QualType::PCK_PtrAuth) {
-                return false;
-              }
-            }
-            return true;
-          };
-
       bool isNonTrivialPtrAuth = false;
       // FIXME: We should actually support strong ARC references and similar in
       // C structs. That'll require some SIL and IRGen work, though.
@@ -2423,7 +2437,7 @@ namespace {
           decl->isNonTrivialToPrimitiveDestroy()) {
         isNonTrivialPtrAuth = Impl.SwiftContext.SILOpts
                                   .EnableImportPtrauthFieldFunctionPointers &&
-                              isNonTrivialDueToAddressDiversifiedPtrAuth(decl);
+                              isNonTrivialToPrimitiveCopyOnlyDueToPtrAuth(decl);
         if (!isNonTrivialPtrAuth) {
           // Note that there is a third predicate related to these,
           // isNonTrivialToPrimitiveDefaultInitialize. That one's not important
