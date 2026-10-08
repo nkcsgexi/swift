@@ -577,13 +577,16 @@ def diag_tags(d, inside, directives, body_lines):
 
 
 def gap_category(cfg, legacy, new):
-    """passing, ifconfig, a GAP_TYPES entry, or mixed.
+    """passing, crash, ifconfig, a GAP_TYPES entry, or mixed.
 
-    A failing test is filed under the gap type behind more than half of its
-    failing diagnostics; gaps on or inside #if lines count as 'ifconfig'.
+    Tests where ASTGen crashes are filed under 'crash'. Otherwise a failing
+    test is filed under the gap type behind more than half of its failing
+    diagnostics; gaps on or inside #if lines count as 'ifconfig'.
     """
     if cfg['status'] == 'passing':
         return 'passing'
+    if cfg['new_harvest_error'] == 'crash':
+        return 'crash'
     inside, directives, body_lines = line_info(cfg['source'])
     counts = collections.Counter()
     for cat, l, n in classify(legacy, new):

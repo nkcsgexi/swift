@@ -13,9 +13,10 @@
 |---|---|
 | passing/ | 108 |
 | extra/ | 44 |
-| missing/ | 43 |
 | ifconfig/ | 43 |
-| mixed/ | 22 |
+| crash/ | 24 |
+| mixed/ | 21 |
+| missing/ | 20 |
 | wrong-column/ | 3 |
 
 ## Diagnostics by category

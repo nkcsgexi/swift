@@ -1613,7 +1613,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -1623,7 +1623,7 @@
     "%target-swift-5.1-abi-triple"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/async.swift",
+   "output": "test/ASTGenParity/Parse/crash/async.swift",
    "requires": [
     "concurrency"
    ],
@@ -1663,14 +1663,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/availability_query.swift",
+   "output": "test/ASTGenParity/Parse/crash/availability_query.swift",
    "requires": [
     "OS=macosx"
    ],
@@ -1679,7 +1679,7 @@
    "unsupported": []
   },
   {
-   "category": "mixed",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "CustomAvailability",
@@ -1696,21 +1696,21 @@
     "DynamicDomain"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/mixed/availability_query_custom_domains.swift",
+   "output": "test/ASTGenParity/Parse/crash/availability_query_custom_domains.swift",
    "requires": [],
    "source": "test/Parse/availability_query_custom_domains.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/availability_query_unavailability.swift",
+   "output": "test/ASTGenParity/Parse/crash/availability_query_unavailability.swift",
    "requires": [
     "OS=macosx"
    ],
@@ -1733,7 +1733,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "CoroutineAccessors",
@@ -1744,7 +1744,7 @@
     "CoroutineAccessors"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/borrow_and_mutate_accessors.swift",
+   "output": "test/ASTGenParity/Parse/crash/borrow_and_mutate_accessors.swift",
    "requires": [],
    "source": "test/Parse/borrow_and_mutate_accessors.swift",
    "status": "xfail",
@@ -1893,7 +1893,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -1903,7 +1903,7 @@
     "main"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/comment_operator.swift",
+   "output": "test/ASTGenParity/Parse/crash/comment_operator.swift",
    "requires": [],
    "source": "test/Parse/comment_operator.swift",
    "status": "xfail",
@@ -2030,7 +2030,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "CoroutineAccessors",
@@ -2041,28 +2041,28 @@
     "CoroutineAccessors"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors.cfg1.swift",
+   "output": "test/ASTGenParity/Parse/crash/coroutine_accessors.cfg1.swift",
    "requires": [],
    "source": "test/Parse/coroutine_accessors.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors.cfg2.swift",
+   "output": "test/ASTGenParity/Parse/crash/coroutine_accessors.cfg2.swift",
    "requires": [],
    "source": "test/Parse/coroutine_accessors.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "CoroutineAccessors",
@@ -2073,21 +2073,21 @@
     "CoroutineAccessors"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors_ambiguity.cfg1.swift",
+   "output": "test/ASTGenParity/Parse/crash/coroutine_accessors_ambiguity.cfg1.swift",
    "requires": [],
    "source": "test/Parse/coroutine_accessors_ambiguity.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors_ambiguity.cfg2.swift",
+   "output": "test/ASTGenParity/Parse/crash/coroutine_accessors_ambiguity.cfg2.swift",
    "requires": [],
    "source": "test/Parse/coroutine_accessors_ambiguity.swift",
    "status": "xfail",
@@ -2174,28 +2174,28 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/diagnose_attribute.swift",
+   "output": "test/ASTGenParity/Parse/crash/diagnose_attribute.swift",
    "requires": [],
    "source": "test/Parse/diagnose_attribute.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/diagnose_availability.swift",
+   "output": "test/ASTGenParity/Parse/crash/diagnose_availability.swift",
    "requires": [],
    "source": "test/Parse/diagnose_availability.swift",
    "status": "xfail",
@@ -2328,7 +2328,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -2338,7 +2338,7 @@
     "%target-swift-5.1-abi-triple"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/effectful_properties.swift",
+   "output": "test/ASTGenParity/Parse/crash/effectful_properties.swift",
    "requires": [],
    "source": "test/Parse/effectful_properties.swift",
    "status": "xfail",
@@ -2404,7 +2404,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -2414,7 +2414,7 @@
     "%target-swift-5.1-abi-triple"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/execution_behavior_attrs.swift",
+   "output": "test/ASTGenParity/Parse/crash/execution_behavior_attrs.swift",
    "requires": [
     "concurrency"
    ],
@@ -2746,14 +2746,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/init_deinit.swift",
+   "output": "test/ASTGenParity/Parse/crash/init_deinit.swift",
    "requires": [],
    "source": "test/Parse/init_deinit.swift",
    "status": "xfail",
@@ -2819,14 +2819,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/invalid_ternary_expr.swift",
+   "output": "test/ASTGenParity/Parse/crash/invalid_ternary_expr.swift",
    "requires": [],
    "source": "test/Parse/invalid_ternary_expr.swift",
    "status": "xfail",
@@ -2947,7 +2947,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "Lifetimes",
@@ -2958,7 +2958,7 @@
     "Lifetimes"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/lifetime_attr.swift",
+   "output": "test/ASTGenParity/Parse/crash/lifetime_attr.swift",
    "requires": [],
    "source": "test/Parse/lifetime_attr.swift",
    "status": "xfail",
@@ -3135,14 +3135,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/multiline_pound_diagnostic_arg_rdar_41154797.swift",
+   "output": "test/ASTGenParity/Parse/crash/multiline_pound_diagnostic_arg_rdar_41154797.swift",
    "requires": [],
    "source": "test/Parse/multiline_pound_diagnostic_arg_rdar_41154797.swift",
    "status": "xfail",
@@ -3295,14 +3295,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/operator_decl.swift",
+   "output": "test/ASTGenParity/Parse/crash/operator_decl.swift",
    "requires": [],
    "source": "test/Parse/operator_decl.swift",
    "status": "xfail",
@@ -3367,14 +3367,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/original_defined_in_attr.swift",
+   "output": "test/ASTGenParity/Parse/crash/original_defined_in_attr.swift",
    "requires": [
     "OS=macosx"
    ],
@@ -3861,14 +3861,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/switch.swift",
+   "output": "test/ASTGenParity/Parse/crash/switch.swift",
    "requires": [],
    "source": "test/Parse/switch.swift",
    "status": "xfail",
@@ -3953,14 +3953,14 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
    ],
    "flags": [],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/trailing-comma.swift",
+   "output": "test/ASTGenParity/Parse/crash/trailing-comma.swift",
    "requires": [],
    "source": "test/Parse/trailing-comma.swift",
    "status": "xfail",
@@ -3999,7 +3999,7 @@
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -4009,14 +4009,14 @@
     "4"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/try.swift",
+   "output": "test/ASTGenParity/Parse/crash/try.swift",
    "requires": [],
    "source": "test/Parse/try.swift",
    "status": "xfail",
    "unsupported": []
   },
   {
-   "category": "missing",
+   "category": "crash",
    "driver": "%target-swift-frontend",
    "features": [
     "ParserASTGen"
@@ -4026,7 +4026,7 @@
     "5"
    ],
    "new_harvest_error": "crash",
-   "output": "test/ASTGenParity/Parse/missing/try_swift5.swift",
+   "output": "test/ASTGenParity/Parse/crash/try_swift5.swift",
    "requires": [],
    "source": "test/Parse/try_swift5.swift",
    "status": "xfail",
