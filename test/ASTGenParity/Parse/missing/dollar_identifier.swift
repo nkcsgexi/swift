@@ -1,0 +1,163 @@
+// RUN; %target-typecheck-verify-swift -swift-version 4
+
+// https://github.com/apple/swift/issues/44270
+// Dollar was accidentally allowed as an identifier in Swift 3.
+// SE-0144: Reject this behavior in the future.
+
+func dollarVar() {
+  var $ : Int = 42 // expected_error {{'$' is not an identifier; use backticks to escape it}} {{7-8=`$`}}
+  $ += 1 // expected_error {{'$' is not an identifier; use backticks to escape it}} {{3-4=`$`}}
+  print($) // expected_error {{'$' is not an identifier; use backticks to escape it}} {{9-10=`$`}}
+}
+func dollarLet() {
+  let $ = 42 // expected_error {{'$' is not an identifier; use backticks to escape it}} {{7-8=`$`}}
+  print($) // expected_error {{'$' is not an identifier; use backticks to escape it}} {{9-10=`$`}}
+}
+func dollarClass() {
+  class $ {} // expected_error {{'$' is not an identifier; use backticks to escape it}} {{9-10=`$`}}
+}
+func dollarEnum() {
+  enum $ {} // expected_error {{'$' is not an identifier; use backticks to escape it}} {{8-9=`$`}}
+}
+func dollarStruct() {
+  struct $ {} // expected_error {{'$' is not an identifier; use backticks to escape it}} {{10-11=`$`}}
+}
+
+func dollarFunc() {
+  func $($ dollarParam: Int) {}
+  // expected_error@-1 {{'$' is not an identifier; use backticks to escape it}} {{8-9=`$`}}
+  // expected_error@-2 {{'$' is not an identifier; use backticks to escape it}} {{10-11=`$`}}
+  $($: 24)
+  // expected_error@-1 {{'$' is not an identifier; use backticks to escape it}} {{3-4=`$`}}
+  // expected_error@-2 {{'$' is not an identifier; use backticks to escape it}} {{5-6=`$`}}
+}
+
+func escapedDollarVar() {
+  var `$` : Int = 42 // no error
+  `$` += 1
+  print(`$`)
+}
+func escapedDollarLet() {
+  let `$` = 42 // no error
+  print(`$`)
+}
+func escapedDollarClass() {
+  class `$` {} // no error
+}
+func escapedDollarEnum() {
+  enum `$` {} // no error
+}
+func escapedDollarStruct() {
+  struct `$` {} // no error
+}
+
+func escapedDollarFunc() {
+  func `$`(`$`: Int) {} // no error
+  `$`(`$`: 25) // no error
+}
+
+func escapedDollarAnd() {
+  `$0` = 1 // expected_error {{cannot find '$0' in scope}}
+  `$$` = 2 // expected_error {{cannot find '$$' in scope}}
+  `$abc` = 3 // expected_error {{cannot find '$abc' in scope}}
+}
+
+// Test that we disallow user-defined $-prefixed identifiers. However, the error
+// should not be emitted on $-prefixed identifiers that are not considered
+// declarations.
+
+func $declareWithDollar() { // expected_error{{cannot declare entity named '$declareWithDollar'}}
+  var $foo: Int { // expected_error{{cannot declare entity named '$foo'}}
+    get { 0 }
+    set($value) {} // expected_error{{cannot declare entity named '$value'}}
+  }
+  func $bar() { } // expected_error{{cannot declare entity named '$bar'}}
+  func wibble(
+    $a: Int, // expected_error{{cannot declare entity named '$a'}}
+    $b c: Int) { } // expected_error{{cannot declare entity named '$b'}}
+  let _: (Int) -> Int = {
+    [$capture = 0] // expected_error{{cannot declare entity named '$capture'}}
+    $a in // expected_error{{inferred projection type 'Int' is not a property wrapper}}
+    $capture
+  }
+  let ($a: _, _) = (0, 0) // expected_error{{cannot declare entity named '$a'}}
+  $label: if true { // expected_error{{cannot declare entity named '$label'}}
+    break $label
+  }
+  switch 0 {
+  @$dollar case _: // expected_error {{unknown attribute '$dollar'}}
+    break
+  }
+  if #available($Dummy 9999, *) {} // expected_warning {{cannot find availability domain '$Dummy'}}
+  @_swift_native_objc_runtime_base($Dollar)
+  class $Class {} // expected_error{{cannot declare entity named '$Class'; the '$' prefix is reserved}}
+  enum $Enum {} // expected_error{{cannot declare entity named '$Enum'; the '$' prefix is reserved}}
+  struct $Struct { // expected_error{{cannot declare entity named '$Struct'; the '$' prefix is reserved}}
+    @_projectedValueProperty($dummy)
+    let property: Never
+  }
+}
+protocol $Protocol {} // expected_error {{cannot declare entity named '$Protocol'; the '$' prefix is reserved}}
+precedencegroup $Precedence { // expected_error {{cannot declare entity named '$Precedence'; the '$' prefix is reserved}}
+  higherThan: $Precedence // expected_error {{cycle in 'higherThan' relation}}
+}
+infix operator **: $Precedence
+#$UnknownDirective() // expected_error {{no macro named '$UnknownDirective'}}
+
+
+// https://github.com/apple/swift/issues/55672
+
+@propertyWrapper
+struct Wrapper {
+  var wrappedValue: Int
+  var projectedValue: String { String(wrappedValue) }
+}
+
+struct S {
+  @Wrapper var café = 42
+}
+
+let _ = S().$café // Okay
+
+// https://github.com/apple/swift/issues/55538
+infix operator $ // expected_error{{'$' is considered an identifier and must not appear within an operator name}}
+infix operator `$` // expected_error{{'$' is considered an identifier and must not appear within an operator name}}
+
+func `$declareEscapedWithDollar`() { } // expected_error{{cannot declare entity named '$declareEscapedWithDollar'}}
+// ---- ASTGen parity: generated by utils/astgen-parity/generate.py; DO NOT EDIT ----
+// SOURCE; test/Parse/dollar_identifier.swift
+// RUN: %target-swift-frontend -parse -verify -disable-objc-attr-requires-foundation-module -swift-version 4 %s -enable-experimental-feature ParserASTGen %{astgen-parity-override}
+// REQUIRES: swift_swift_parser
+// REQUIRES: swift_feature_ParserASTGen
+// XFAIL: *
+// expected-error@8:7 {{}} // standalone_dollar_identifier
+// expected-error@9:3 {{}} // standalone_dollar_identifier
+// expected-error@10:9 {{}} // standalone_dollar_identifier
+// expected-error@13:7 {{}} // standalone_dollar_identifier
+// expected-error@14:9 {{}} // standalone_dollar_identifier
+// expected-error@17:9 {{}} // standalone_dollar_identifier
+// expected-error@20:8 {{}} // standalone_dollar_identifier
+// expected-error@23:10 {{}} // standalone_dollar_identifier
+// expected-error@27:8 {{}} // standalone_dollar_identifier
+// expected-error@27:10 {{}} // standalone_dollar_identifier
+// expected-error@30:3 {{}} // standalone_dollar_identifier
+// expected-error@30:5 {{}} // standalone_dollar_identifier
+// expected-error@69:6 {{}} // dollar_identifier_decl
+// expected-error@70:7 {{}} // dollar_identifier_decl
+// expected-error@72:9 {{}} // dollar_identifier_decl
+// expected-error@74:8 {{}} // dollar_identifier_decl
+// expected-error@76:5 {{}} // dollar_identifier_decl
+// expected-error@77:5 {{}} // dollar_identifier_decl
+// expected-error@79:6 {{}} // dollar_identifier_decl
+// expected-error@83:8 {{}} // dollar_identifier_decl
+// expected-error@84:3 {{}} // dollar_identifier_decl
+// expected-error@88:4 {{}} // unknown_attr_name
+// expected-error@93:9 {{}} // dollar_identifier_decl
+// expected-error@94:8 {{}} // dollar_identifier_decl
+// expected-error@95:10 {{}} // dollar_identifier_decl
+// expected-error@100:10 {{}} // dollar_identifier_decl
+// expected-error@101:17 {{}} // dollar_identifier_decl
+// expected-error@123:16 {{}} // identifier_within_operator_name
+// expected-error@124:16 {{}} // identifier_within_operator_name
+// expected-error@126:6 {{}} // dollar_identifier_decl
+// ---- end ASTGen parity ----

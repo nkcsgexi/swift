@@ -1,0 +1,4342 @@
+{
+ "configs": [
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-com-interop"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/COM.swift",
+   "requires": [],
+   "source": "test/Parse/COM.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-com-interop"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/COMAttr.swift",
+   "requires": [],
+   "source": "test/Parse/COMAttr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "aarch64-unknown-linux-android",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/aarch64AndroidTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/aarch64AndroidTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm64-apple-tvos9.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/arm64AppleTVOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/arm64AppleTVOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm64-apple-ios7.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/arm64IOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/arm64IOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "armv7-unknown-linux-androideabi",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/armAndroidTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/armAndroidTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm-apple-ios7.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/armIOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/armIOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm-apple-watchos2.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/armWatchOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/armWatchOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "avr-none-none",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/avrTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/avrTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO",
+    "-D",
+    "BAR"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/basicDeclarations.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/basicDeclarations.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO",
+    "-D",
+    "BAZ",
+    "-target",
+    "x86_64-apple-macosx10.9",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/basicIdentity.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/basicIdentity.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO",
+    "-D",
+    "BAZ",
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/basicParseErrors.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/basicParseErrors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/can_import.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/can_import_idempotent.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_idempotent.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import",
+    "-disable-implicit-string-processing-module-import",
+    "-module-can-import",
+    "Foo",
+    "-module-can-import-version",
+    "Bar",
+    "113.330.1.2",
+    "0.0",
+    "-module-can-import-version",
+    "Baz",
+    "113.330.1.2",
+    "113.330.1.2"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_options.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_options.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_submodule.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_submodule.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/can_import_submodule_missing_requirement.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_submodule_missing_requirement.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_submodule_private.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_submodule_private.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_version.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_version.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_version_astgen.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_version_astgen.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_version_bad_binary_module.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_version_bad_binary_module.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_version_emitted_once.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_version_emitted_once.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-disable-implicit-concurrency-module-import"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/can_import_version_missing_user_module_version.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/can_import_version_missing_user_module_version.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-com-interop",
+    "-com-interop-model=microsoft",
+    "-D",
+    "EXPECT_MICROSOFT"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/com_interop_model_astgen.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/com_interop_model_astgen.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-com-interop",
+    "-com-interop-model=corefoundation",
+    "-D",
+    "EXPECT_COREFOUNDATION"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/com_interop_model_astgen.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/com_interop_model_astgen.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "EXPECT_DISABLED"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/com_interop_model_astgen.cfg3.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/com_interop_model_astgen.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/compiler.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/compiler.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/compiler.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/compiler.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/compiler_version.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/compiler_version.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/compoundName_swift4.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/compoundName_swift4.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO",
+    "-D",
+    "BAR"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/decl_in_true_inactive.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/decl_in_true_inactive.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/decl_parse_errors-2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/decl_parse_errors-2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/ConditionalCompilation/decl_parse_errors.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/decl_parse_errors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/endif-on-end-of-file.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/endif-on-end-of-file.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "i386-apple-tvos9.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/i386AppleTVOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/i386AppleTVOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "i386-apple-ios7.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/i386IOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/i386IOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "i386-apple-watchos2.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/i386WatchOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/i386WatchOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/identifierName.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/identifierName.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/invalid-runtime-name.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/invalid-runtime-name.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/language_version.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/language_version.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4.2"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/language_version_explicit.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/language_version_explicit.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-target",
+    "%target-cpu-apple-ios12.0-macabi",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/macabiTargetEnv.swift",
+   "requires": [
+    "OS=macosx || OS=maccatalyst"
+   ],
+   "source": "test/Parse/ConditionalCompilation/macabiTargetEnv.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/module_top_level.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/module_top_level.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/no_configuration_error1.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/no_configuration_error1.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/no_configuration_error2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/no_configuration_error2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm64-apple-none-macho",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/noneOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/noneOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm64-apple-none-macho",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/object_file_format.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/object_file_format.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "arm64-apple-none-elf",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/object_file_format.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/object_file_format.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "wasm32-unknown-wasi",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/object_file_format.cfg3.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/object_file_format.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows-msvc",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/object_file_format.cfg4.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/object_file_format.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "BLAH"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-function-2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-function-2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "BLAH"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-function-3.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-function-3.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "BLAH"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-function-4.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-function-4.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/pound-if-inside-function-5.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-function-5.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-function.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-function.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "BLAH"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-statement-2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-statement-2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-inside-statement.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-inside-statement.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-top-level-2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level-2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-top-level-3.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level-3.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/pound-if-top-level-4.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level-4.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/pound-if-top-level-clean.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level-clean.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-top-level-nested.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level-nested.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "BLAH"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/pound-if-top-level.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/pound-if-top-level.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "powerpc64-unknown-linux-gnu",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/powerpc64LinuxTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/powerpc64LinuxTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "powerpc64le-unknown-linux-gnu",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/powerpc64leLinuxTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/powerpc64leLinuxTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "s390x-unknown-linux-gnu",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/s390xLinuxTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/s390xLinuxTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/sequence.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/sequence.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-D",
+    "FOO"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/sequence_version.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/sequence_version.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-target",
+    "x86_64-apple-ios7.0-simulator",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/simulatorTargetEnv.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/simulatorTargetEnv.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-target",
+    "x86_64-unknown-linux-simulator",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/simulatorTargetEnv.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/simulatorTargetEnv.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/ConditionalCompilation/stmt_in_type.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/stmt_in_type.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "ENABLE_C"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/switch_case.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/switch_case.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "FOO"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/topLevelDeclarations.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/topLevelDeclarations.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library",
+    "-D",
+    "FOO"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ConditionalCompilation/toplevel_parseaslibrary.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/toplevel_parseaslibrary.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-apple-macosx10.9",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/trailingClosureOnTargetConfig.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/trailingClosureOnTargetConfig.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "wasm32-unknown-emscripten",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/wasm32EmscriptenTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/wasm32EmscriptenTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "wasm32-unknown-wasi",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/wasm32Target.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/wasm32Target.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "wasm32-unknown-wasip1-threads",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/wasm32ThreadsTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/wasm32ThreadsTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-apple-tvos9.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64AppleTVOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64AppleTVOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows-cygnus",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64CygwinTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64CygwinTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-freebsd10",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64FreeBSDTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64FreeBSDTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-apple-ios7.0",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64IOSTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64IOSTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-linux-gnu",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64LinuxTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64LinuxTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-apple-macosx10.9",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64OSXTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64OSXTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows-msvc",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x64WindowsTarget.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x64WindowsTarget.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-scei-ps4",
+    "-disable-objc-interop",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ConditionalCompilation/x86_64PS4Target.swift",
+   "requires": [],
+   "source": "test/Parse/ConditionalCompilation/x86_64PS4Target.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/EOF/block-comment-missing-newline.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/block-comment-missing-newline.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/EOF/block-comment-nested.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/block-comment-nested.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/EOF/block-comment.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/block-comment.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/EOF/interpolated-string-literal.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/interpolated-string-literal.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/EOF/unfinished-for-at-eof.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/unfinished-for-at-eof.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/EOF/unterminated-string-literal-missing-newline.swift",
+   "requires": [],
+   "source": "test/Parse/EOF/unterminated-string-literal-missing-newline.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/actor.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/actor.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/alwaysEmitConformanceMetadata_attr.swift",
+   "requires": [],
+   "source": "test/Parse/alwaysEmitConformanceMetadata_attr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/async-syntax.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/async-syntax.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/async.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/async.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/attribute_spacing.swift",
+   "requires": [],
+   "source": "test/Parse/attribute_spacing.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "6"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/attribute_spacing_swift6.swift",
+   "requires": [],
+   "source": "test/Parse/attribute_spacing_swift6.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/availability_query.swift",
+   "requires": [
+    "OS=macosx"
+   ],
+   "source": "test/Parse/availability_query.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CustomAvailability",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CustomAvailability",
+    "-define-enabled-availability-domain",
+    "EnabledDomain",
+    "-define-disabled-availability-domain",
+    "DisabledDomain",
+    "-define-dynamic-availability-domain",
+    "DynamicDomain"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/mixed/availability_query_custom_domains.swift",
+   "requires": [],
+   "source": "test/Parse/availability_query_custom_domains.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/availability_query_unavailability.swift",
+   "requires": [
+    "OS=macosx"
+   ],
+   "source": "test/Parse/availability_query_unavailability.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/backgtrack-startofline.swift",
+   "requires": [],
+   "source": "test/Parse/backgtrack-startofline.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CoroutineAccessors",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CoroutineAccessors"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/borrow_and_mutate_accessors.swift",
+   "requires": [],
+   "source": "test/Parse/borrow_and_mutate_accessors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-move-only"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/borrow_expr.swift",
+   "requires": [],
+   "source": "test/Parse/borrow_expr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/brace_recovery_eof.swift",
+   "requires": [],
+   "source": "test/Parse/brace_recovery_eof.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/builtin_bridge_object.swift",
+   "requires": [],
+   "source": "test/Parse/builtin_bridge_object.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/builtin_word.swift",
+   "requires": [],
+   "source": "test/Parse/builtin_word.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-module-name",
+    "main"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/c_function_pointers.swift",
+   "requires": [],
+   "source": "test/Parse/c_function_pointers.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CalledAttribute",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CalledAttribute"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/called_attr.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/called_attr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/called_attr.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/called_attr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/closure-debugger.swift",
+   "requires": [],
+   "source": "test/Parse/closure-debugger.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "5"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/closure-missing-in.swift",
+   "requires": [],
+   "source": "test/Parse/closure-missing-in.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-module-name",
+    "main"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/comment_operator.swift",
+   "requires": [],
+   "source": "test/Parse/comment_operator.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "wrong-column",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/wrong-column/conflict_markers.swift",
+   "requires": [],
+   "source": "test/Parse/conflict_markers.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/confusables.swift",
+   "requires": [],
+   "source": "test/Parse/confusables.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/consecutive_statements.swift",
+   "requires": [],
+   "source": "test/Parse/consecutive_statements.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CompileTimeValues",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CompileTimeValues"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/const.swift",
+   "requires": [],
+   "source": "test/Parse/const.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/const_no_feature.swift",
+   "requires": [],
+   "source": "test/Parse/const_no_feature.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CompileTimeValues",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CompileTimeValues"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/constinitialized.swift",
+   "requires": [],
+   "source": "test/Parse/constinitialized.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/constinitialized_no_feature.swift",
+   "requires": [],
+   "source": "test/Parse/constinitialized_no_feature.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/copy_expr.swift",
+   "requires": [],
+   "source": "test/Parse/copy_expr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CoroutineAccessors",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CoroutineAccessors"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/coroutine_accessors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/coroutine_accessors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CoroutineAccessors",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CoroutineAccessors"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors_ambiguity.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/coroutine_accessors_ambiguity.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/coroutine_accessors_ambiguity.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/coroutine_accessors_ambiguity.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "CoroutineFunctions",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "CoroutineFunctions"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/coroutines.swift",
+   "requires": [],
+   "source": "test/Parse/coroutines.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/delayed_extension.swift",
+   "requires": [],
+   "source": "test/Parse/delayed_extension.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/deprecated_where.swift",
+   "requires": [],
+   "source": "test/Parse/deprecated_where.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/diagnose_attr_misc.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_attr_misc.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/diagnose_attr_nominal.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_attr_nominal.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/diagnose_attribute.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_attribute.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/diagnose_availability.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_availability.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows-msvc",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/diagnose_availability_windows.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_availability_windows.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows8.0-msvc",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/diagnose_availability_windows.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_availability_windows.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "5"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/diagnose_dynamicReplacement.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_dynamicReplacement.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/diagnose_initializer_as_typed_pattern.swift",
+   "requires": [],
+   "source": "test/Parse/diagnose_initializer_as_typed_pattern.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/diagnostic_missing_func_keyword.swift",
+   "requires": [],
+   "source": "test/Parse/diagnostic_missing_func_keyword.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/diagnostic_points_to_first_bad_token.swift",
+   "requires": [],
+   "source": "test/Parse/diagnostic_points_to_first_bad_token.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/discard.swift",
+   "requires": [],
+   "source": "test/Parse/discard.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/dollar_identifier.swift",
+   "requires": [],
+   "source": "test/Parse/dollar_identifier.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/effectful_properties.swift",
+   "requires": [],
+   "source": "test/Parse/effectful_properties.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/enum.swift",
+   "requires": [],
+   "source": "test/Parse/enum.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/enum_element_pattern_swift4.swift",
+   "requires": [],
+   "source": "test/Parse/enum_element_pattern_swift4.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/errors.swift",
+   "requires": [],
+   "source": "test/Parse/errors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/escaped_identifiers.swift",
+   "requires": [],
+   "source": "test/Parse/escaped_identifiers.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/execution_behavior_attrs.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/execution_behavior_attrs.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ExtractConstantsFromMembers",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "ExtractConstantsFromMembers"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/extractConstantsFromMembers_attr.swift",
+   "requires": [],
+   "source": "test/Parse/extractConstantsFromMembers_attr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/features.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/features.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-static-assert"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/features.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/features.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "StaticAssert"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "StaticAssert"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/features.cfg3.swift",
+   "requires": [],
+   "source": "test/Parse/features.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "DefaultIsolationPerFile",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "DefaultIsolationPerFile"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/file_default.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/file_default.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/fixed_infinite_loops.swift",
+   "requires": [],
+   "source": "test/Parse/fixed_infinite_loops.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/foreach.swift",
+   "requires": [],
+   "source": "test/Parse/foreach.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/foreach_async.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/foreach_async.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/form_feed_char.swift",
+   "requires": [],
+   "source": "test/Parse/form_feed_char.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/function_call.swift",
+   "requires": [],
+   "source": "test/Parse/function_call.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/generic_disambiguation.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/generic_disambiguation.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "6"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/generic_disambiguation.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/generic_disambiguation.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/guard-top-level.swift",
+   "requires": [],
+   "source": "test/Parse/guard-top-level.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/guard.swift",
+   "requires": [],
+   "source": "test/Parse/guard.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/hashbang_library.swift",
+   "requires": [],
+   "source": "test/Parse/hashbang_library.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/hashbang_main.swift",
+   "requires": [],
+   "source": "test/Parse/hashbang_main.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/identifiers.swift",
+   "requires": [],
+   "source": "test/Parse/identifiers.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/if-else-invalid.swift",
+   "requires": [],
+   "source": "test/Parse/if-else-invalid.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-D",
+    "CONDITION_1"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/ifconfig_expr.swift",
+   "requires": [],
+   "source": "test/Parse/ifconfig_expr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/implicit_getter_incomplete.swift",
+   "requires": [],
+   "source": "test/Parse/implicit_getter_incomplete.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/implicit_uninhabited_conversion.swift",
+   "requires": [],
+   "source": "test/Parse/implicit_uninhabited_conversion.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/init_deinit.swift",
+   "requires": [],
+   "source": "test/Parse/init_deinit.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/integer_types.swift",
+   "requires": [],
+   "source": "test/Parse/integer_types.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/invalid-utf8.swift",
+   "requires": [],
+   "source": "test/Parse/invalid-utf8.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/invalid.swift",
+   "requires": [
+    "OS=macosx",
+    "swift_swift_parser"
+   ],
+   "source": "test/Parse/invalid.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/invalid_string_interpolation_protocol.swift",
+   "requires": [],
+   "source": "test/Parse/invalid_string_interpolation_protocol.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/invalid_ternary_expr.swift",
+   "requires": [],
+   "source": "test/Parse/invalid_ternary_expr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "LifetimeDependence",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "LifetimeDependence"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/inverse_escapable_feature.swift",
+   "requires": [],
+   "source": "test/Parse/inverse_escapable_feature.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "SuppressedAssociatedTypesWithDefaults"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "SuppressedAssociatedTypesWithDefaults"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/inverses.swift",
+   "requires": [],
+   "source": "test/Parse/inverses.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-6.0-abi-triple"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/isolated_any.swift",
+   "requires": [],
+   "source": "test/Parse/isolated_any.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/isolated_any_forbidden.swift",
+   "requires": [],
+   "source": "test/Parse/isolated_any_forbidden.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/issue-74561.cfg1.swift",
+   "requires": [],
+   "source": "test/Parse/issue-74561.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-module-name",
+    "Mod"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/issue-74561.cfg2.swift",
+   "requires": [],
+   "source": "test/Parse/issue-74561.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-library-evolution"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/library_evolution_feature.swift",
+   "requires": [],
+   "source": "test/Parse/library_evolution_feature.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "Lifetimes",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "Lifetimes"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/lifetime_attr.swift",
+   "requires": [],
+   "source": "test/Parse/lifetime_attr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/macro_decl.swift",
+   "requires": [],
+   "source": "test/Parse/macro_decl.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/macro_expr.swift",
+   "requires": [],
+   "source": "test/Parse/macro_expr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/matching_patterns.swift",
+   "requires": [],
+   "source": "test/Parse/matching_patterns.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "ReferenceBindings"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-enable-experimental-feature",
+    "ReferenceBindings"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/matching_patterns_reference_bindings.swift",
+   "requires": [],
+   "source": "test/Parse/matching_patterns_reference_bindings.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/metatype_object_conversion.swift",
+   "requires": [
+    "objc_interop"
+   ],
+   "source": "test/Parse/metatype_object_conversion.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-module-name",
+    "main"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/module_selector.swift",
+   "requires": [],
+   "source": "test/Parse/module_selector.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/move_expr.swift",
+   "requires": [],
+   "source": "test/Parse/move_expr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-move-only"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/move_expr_legacy.swift",
+   "requires": [],
+   "source": "test/Parse/move_expr_legacy.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/move_func_decl.swift",
+   "requires": [],
+   "source": "test/Parse/move_func_decl.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/multiline_errors.swift",
+   "requires": [],
+   "source": "test/Parse/multiline_errors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/multiline_normalize_newline.swift",
+   "requires": [],
+   "source": "test/Parse/multiline_normalize_newline.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/multiline_pound_diagnostic_arg_rdar_41154797.swift",
+   "requires": [],
+   "source": "test/Parse/multiline_pound_diagnostic_arg_rdar_41154797.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/multiline_string.swift",
+   "requires": [],
+   "source": "test/Parse/multiline_string.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/noimplicitcopy_attr.swift",
+   "requires": [],
+   "source": "test/Parse/noimplicitcopy_attr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/nonbreaking_space.swift",
+   "requires": [],
+   "source": "test/Parse/nonbreaking_space.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/number_identifier_errors.swift",
+   "requires": [],
+   "source": "test/Parse/number_identifier_errors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-objc-interop"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/objc_enum.swift",
+   "requires": [],
+   "source": "test/Parse/objc_enum.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/object_literals.swift",
+   "requires": [],
+   "source": "test/Parse/object_literals.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/omit_return.swift",
+   "requires": [],
+   "source": "test/Parse/omit_return.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/omit_return_fail.swift",
+   "requires": [],
+   "source": "test/Parse/omit_return_fail.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/omit_return_ifdecl.swift",
+   "requires": [],
+   "source": "test/Parse/omit_return_ifdecl.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/omit_return_objc.swift",
+   "requires": [
+    "objc_interop"
+   ],
+   "source": "test/Parse/omit_return_objc.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/operator_decl.swift",
+   "requires": [],
+   "source": "test/Parse/operator_decl.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/operators.swift",
+   "requires": [],
+   "source": "test/Parse/operators.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/optional.swift",
+   "requires": [],
+   "source": "test/Parse/optional.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/optional_chain_lvalues.swift",
+   "requires": [],
+   "source": "test/Parse/optional_chain_lvalues.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/optional_lvalues.swift",
+   "requires": [],
+   "source": "test/Parse/optional_lvalues.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/original_defined_in_attr.swift",
+   "requires": [
+    "OS=macosx"
+   ],
+   "source": "test/Parse/original_defined_in_attr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/ownership_modifiers.swift",
+   "requires": [],
+   "source": "test/Parse/ownership_modifiers.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ownership_modifiers_no_errors.swift",
+   "requires": [],
+   "source": "test/Parse/ownership_modifiers_no_errors.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/parameter_specifier_before_param_name.swift",
+   "requires": [
+    "concurrency"
+   ],
+   "source": "test/Parse/parameter_specifier_before_param_name.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/pattern_borrow_bindings.swift",
+   "requires": [],
+   "source": "test/Parse/pattern_borrow_bindings.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/pattern_without_variables.swift",
+   "requires": [],
+   "source": "test/Parse/pattern_without_variables.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "ReferenceBindings"
+   ],
+   "flags": [
+    "-parse-as-library",
+    "-enable-experimental-feature",
+    "ReferenceBindings"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/pattern_without_variables_reference_bindings.swift",
+   "requires": [],
+   "source": "test/Parse/pattern_without_variables_reference_bindings.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/pattern_without_variables_script.swift",
+   "requires": [],
+   "source": "test/Parse/pattern_without_variables_script.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-playground"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/playground_lvalues.swift",
+   "requires": [],
+   "source": "test/Parse/playground_lvalues.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-static-assert"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/pound_assert.swift",
+   "requires": [],
+   "source": "test/Parse/pound_assert.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/raw_string.swift",
+   "requires": [],
+   "source": "test/Parse/raw_string.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/raw_string_errors.swift",
+   "requires": [],
+   "source": "test/Parse/raw_string_errors.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/rdar129195380.swift",
+   "requires": [],
+   "source": "test/Parse/rdar129195380.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/recovery.swift",
+   "requires": [],
+   "source": "test/Parse/recovery.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/recovery_library.swift",
+   "requires": [],
+   "source": "test/Parse/recovery_library.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/result-builder.swift",
+   "requires": [],
+   "source": "test/Parse/result-builder.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/self_rebinding.swift",
+   "requires": [],
+   "source": "test/Parse/self_rebinding.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/semicolon.swift",
+   "requires": [],
+   "source": "test/Parse/semicolon.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "SendingArgsAndResults"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.1-abi-triple",
+    "-enable-experimental-feature",
+    "SendingArgsAndResults",
+    "-strict-concurrency=complete"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/missing/sending.swift",
+   "requires": [],
+   "source": "test/Parse/sending.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4.2"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/strange_interpolation.swift",
+   "requires": [
+    "executable_test"
+   ],
+   "source": "test/Parse/strange_interpolation.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof1.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof1.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof2.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof2.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof3.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof3.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof4.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof4.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof5.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof5.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof6.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof6.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/string_literal_eof7.swift",
+   "requires": [],
+   "source": "test/Parse/string_literal_eof7.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/structure_no_overflow.swift",
+   "requires": [],
+   "source": "test/Parse/structure_no_overflow.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "wrong-column",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/wrong-column/structure_overflow.swift",
+   "requires": [],
+   "source": "test/Parse/structure_overflow.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "wrong-column",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/wrong-column/structure_overflow_paren_exprs.swift",
+   "requires": [],
+   "source": "test/Parse/structure_overflow_paren_exprs.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/subscripting.swift",
+   "requires": [],
+   "source": "test/Parse/subscripting.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/super.swift",
+   "requires": [],
+   "source": "test/Parse/super.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/swift3_warnings_swift4_errors_version_4.swift",
+   "requires": [],
+   "source": "test/Parse/swift3_warnings_swift4_errors_version_4.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/switch.swift",
+   "requires": [],
+   "source": "test/Parse/switch.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/switch_incomplete.swift",
+   "requires": [],
+   "source": "test/Parse/switch_incomplete.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/ternary_expr.swift",
+   "requires": [],
+   "source": "test/Parse/ternary_expr.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/toplevel_library.swift",
+   "requires": [],
+   "source": "test/Parse/toplevel_library.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-parse-as-library"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/toplevel_library_invalid.swift",
+   "requires": [],
+   "source": "test/Parse/toplevel_library_invalid.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen",
+    "TrailingComma"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "TrailingComma"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/trailing-comma-experimental.swift",
+   "requires": [],
+   "source": "test/Parse/trailing-comma-experimental.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/trailing-comma.swift",
+   "requires": [],
+   "source": "test/Parse/trailing-comma.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/trailing-semi.swift",
+   "requires": [],
+   "source": "test/Parse/trailing-semi.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ClosureIsolation",
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-enable-experimental-feature",
+    "ClosureIsolation"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/trailing_closures.swift",
+   "requires": [],
+   "source": "test/Parse/trailing_closures.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/try.swift",
+   "requires": [],
+   "source": "test/Parse/try.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "missing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "5"
+   ],
+   "new_harvest_error": "crash",
+   "output": "test/ASTGenParity/Parse/missing/try_swift5.swift",
+   "requires": [],
+   "source": "test/Parse/try_swift5.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "4",
+    "-module-name",
+    "test"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/type_expr.swift",
+   "requires": [],
+   "source": "test/Parse/type_expr.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "%target-swift-5.9-abi-triple"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/type_parameter_packs.swift",
+   "requires": [],
+   "source": "test/Parse/type_parameter_packs.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "extra",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/extra/typealias.swift",
+   "requires": [],
+   "source": "test/Parse/typealias.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-swift-version",
+    "5",
+    "-module-name",
+    "test"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/typed_throws.swift",
+   "requires": [],
+   "source": "test/Parse/typed_throws.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/unclosed-string-interpolation.swift",
+   "requires": [],
+   "source": "test/Parse/unclosed-string-interpolation.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/unknown_platform.swift",
+   "requires": [],
+   "source": "test/Parse/unknown_platform.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "ifconfig",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/ifconfig/upcoming_feature.swift",
+   "requires": [],
+   "source": "test/Parse/upcoming_feature.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/utf16_bom.swift",
+   "requires": [],
+   "source": "test/Parse/utf16_bom.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/utf8_bom.swift",
+   "requires": [],
+   "source": "test/Parse/utf8_bom.swift",
+   "status": "passing",
+   "unsupported": []
+  },
+  {
+   "category": "mixed",
+   "driver": "%target-swift-frontend",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/mixed/validate_new_parser_diagnostics.swift",
+   "requires": [
+    "swift_swift_parser"
+   ],
+   "source": "test/Parse/validate_new_parser_diagnostics.swift",
+   "status": "xfail",
+   "unsupported": []
+  },
+  {
+   "category": "passing",
+   "driver": "%swift",
+   "features": [
+    "ParserASTGen"
+   ],
+   "flags": [
+    "-target",
+    "x86_64-unknown-windows-msvc",
+    "-parse-stdlib"
+   ],
+   "new_harvest_error": "",
+   "output": "test/ASTGenParity/Parse/passing/weakLinked.swift",
+   "requires": [],
+   "source": "test/Parse/weakLinked.swift",
+   "status": "passing",
+   "unsupported": []
+  }
+ ],
+ "skipped": [
+  {
+   "reason": "extra input or argument: %S/../Inputs/COM.swift",
+   "run": "%target-swift-frontend -enable-experimental-com-interop -emit-module -module-name COM -emit-module-path %t/COM.swiftmodule %S/../Inputs/COM.swift",
+   "source": "test/Parse/COM.swift"
+  },
+  {
+   "reason": "extra input or argument: %S/../Inputs/COM.swift",
+   "run": "%target-swift-frontend -emit-module-path %t/COM.swiftmodule -module-name COM -enable-experimental-com-interop %S/../Inputs/COM.swift",
+   "source": "test/Parse/COMAttr.swift"
+  },
+  {
+   "reason": "extra input or argument: %S/Inputs/can_import_nonprimary_file.swift",
+   "run": "%target-typecheck-verify-swift -D WITH_PERFORM -primary-file %s %S/Inputs/can_import_nonprimary_file.swift",
+   "source": "test/Parse/ConditionalCompilation/can_import.swift"
+  },
+  {
+   "reason": "unsupported flag: -",
+   "run": "echo \"public var dummyVar = Int()\" | %target-swift-frontend -module-name DummyModule -emit-module -o %t -",
+   "source": "test/Parse/ConditionalCompilation/can_import_idempotent.swift"
+  },
+  {
+   "reason": "mock-sdk frontend",
+   "run": "%target-swift-frontend(mock-sdk: %clang-importer-sdk) -typecheck -verify %s",
+   "source": "test/Parse/ConditionalCompilation/can_import_sdk.swift"
+  },
+  {
+   "reason": "extra input or argument: %t/Foo.swift",
+   "run": "%target-swift-frontend -emit-module %t/Foo.swift -module-name Foo -swift-version 5 -disable-implicit-concurrency-module-import -user-module-version 113.330.1.2.3 -emit-module-interface-path %t/textual/Foo.swiftinterface -enable-library-evolution -emit-module-path %t/binary/Foo.swiftmodule",
+   "source": "test/Parse/ConditionalCompilation/can_import_version.swift"
+  },
+  {
+   "reason": "extra input or argument: %t/Foo.swift",
+   "run": "%target-swift-frontend -emit-module %t/Foo.swift     -module-name NoUserModuleVersion -swift-version 5     -disable-implicit-concurrency-module-import     -emit-module-interface-path %t/textual/NoUserModuleVersion.swiftinterface     -enable-library-evolution     -emit-module-path %t/binary/NoUserModuleVersion.swiftmodule",
+   "source": "test/Parse/ConditionalCompilation/can_import_version_astgen.swift"
+  },
+  {
+   "reason": "extra input or argument: %t/Foo.swift",
+   "run": "%target-swift-frontend -typecheck %t/Foo.swift -module-name BadBinaryModule -swift-version 5 -disable-implicit-concurrency-module-import -user-module-version 2 -emit-module-interface-path %t/BadBinaryModule.swiftinterface -enable-library-evolution",
+   "source": "test/Parse/ConditionalCompilation/can_import_version_bad_binary_module.swift"
+  },
+  {
+   "reason": "extra input or argument: %t/Foo.swift",
+   "run": "%target-swift-frontend -emit-module %t/Foo.swift     -module-name NoUserModuleVersion -swift-version 5     -disable-implicit-concurrency-module-import     -emit-module-interface-path %t/textual/NoUserModuleVersion.swiftinterface     -enable-library-evolution     -emit-module-path %t/binary/NoUserModuleVersion.swiftmodule",
+   "source": "test/Parse/ConditionalCompilation/can_import_version_emitted_once.swift"
+  },
+  {
+   "reason": "extra input or argument: %t/Foo.swift",
+   "run": "%target-swift-frontend -emit-module %t/Foo.swift -module-name NoUserModuleVersion -swift-version 5 -disable-implicit-concurrency-module-import -emit-module-interface-path %t/textual/NoUserModuleVersion.swiftinterface -enable-library-evolution -emit-module-path %t/binary/NoUserModuleVersion.swiftmodule",
+   "source": "test/Parse/ConditionalCompilation/can_import_version_missing_user_module_version.swift"
+  },
+  {
+   "reason": "feature-checker exception",
+   "source": "test/Parse/ConditionalCompilation/com_interop_model.swift"
+  },
+  {
+   "reason": "extra input or argument: %S/Inputs/rdar19548610b.swift",
+   "run": "%target-typecheck-verify-swift -primary-file %S/Inputs/rdar19548610a.swift %S/Inputs/rdar19548610b.swift -module-name A",
+   "source": "test/Parse/ConditionalCompilation/rdar19548610.swift"
+  },
+  {
+   "reason": "no frontend RUN line on %s",
+   "source": "test/Parse/ConditionalCompilation/switch_case_executable.swift"
+  },
+  {
+   "reason": "debugger support makes ASTGen fall back to legacy",
+   "run": "not %target-swift-frontend %s -typecheck -debugger-support 2>&1 | %FileCheck %s --check-prefix=DEBUG",
+   "source": "test/Parse/closure-debugger.swift"
+  },
+  {
+   "reason": "no frontend RUN line on %s",
+   "source": "test/Parse/coroutine_accessors_2.swift"
+  },
+  {
+   "reason": "no frontend RUN line on %s",
+   "source": "test/Parse/coroutine_accessors_3.swift"
+  },
+  {
+   "reason": "debugger support makes ASTGen fall back to legacy",
+   "run": "%target-typecheck-verify-swift -debugger-support",
+   "source": "test/Parse/debugger.swift"
+  },
+  {
+   "reason": "split-file test",
+   "source": "test/Parse/has_symbol.swift"
+  },
+  {
+   "reason": "extra input or argument: %S/../Inputs/empty.swift",
+   "run": "%target-swift-frontend -emit-module -o %t/A.swiftmodule %S/../Inputs/empty.swift -user-module-version 1.0",
+   "source": "test/Parse/ifconfig_expr.swift"
+  },
+  {
+   "reason": "no frontend RUN line on %s",
+   "source": "test/Parse/line-directive-executable.swift"
+  },
+  {
+   "reason": "split-file test",
+   "source": "test/Parse/scoped_attr.swift"
+  },
+  {
+   "reason": "contains NUL bytes",
+   "source": "test/Parse/strange-characters.swift"
+  },
+  {
+   "reason": "no frontend RUN line on %s",
+   "source": "test/Parse/type_parameter_packs_executable.swift"
+  },
+  {
+   "reason": "extra input or argument: %S/Inputs/warning_nonprimary_file.swift",
+   "run": "%target-swift-frontend -typecheck -verify -primary-file %s %S/Inputs/warning_nonprimary_file.swift",
+   "source": "test/Parse/warning_primary_file.swift"
+  },
+  {
+   "output": "test/ASTGenParity/Parse/pending/ConditionalCompilation/can_import_in_inactive.swift",
+   "reason": "legacy harvest: lit UNSUPPORTED",
+   "source": "test/Parse/ConditionalCompilation/can_import_in_inactive.swift"
+  },
+  {
+   "output": "test/ASTGenParity/Parse/pending/enum_floating_point_raw_value.swift",
+   "reason": "legacy harvest: lit UNSUPPORTED",
+   "source": "test/Parse/enum_floating_point_raw_value.swift"
+  },
+  {
+   "output": "test/ASTGenParity/Parse/pending/function_skipping_source_location.swift",
+   "reason": "legacy harvest: diagnostic in another file: A",
+   "source": "test/Parse/function_skipping_source_location.swift"
+  },
+  {
+   "output": "test/ASTGenParity/Parse/pending/line-directive.swift",
+   "reason": "legacy harvest: diagnostic in another file: x.swift",
+   "source": "test/Parse/line-directive.swift"
+  }
+ ]
+}
