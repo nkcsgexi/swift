@@ -759,7 +759,8 @@ llvm::Expected<SILFunction *> SILDeserializer::readSILFunctionChecked(
 
   if (FID == 0)
     return nullptr;
-  assert(FID <= Funcs.size() && "invalid SILFunction ID");
+  if (FID > Funcs.size())
+    return MF->diagnoseFatal("invalid SILFunction ID");
 
   PrettyStackTraceStringAction trace("deserializing SIL function", name);
 
@@ -4333,6 +4334,12 @@ bool SILDeserializer::hasSILFunction(StringRef Name,
   // There is a function with the required name.
   // Find out which linkage it has.
   auto FID = *iter;
+  if (FID == 0)
+    return false;
+  if (FID > Funcs.size()) {
+    MF->diagnoseAndConsumeFatal("invalid SILFunction ID");
+    return false;
+  }
   auto &cacheEntry = Funcs[FID-1];
   if (cacheEntry.isFullyDeserialized() ||
       (cacheEntry.isDeserialized()))
@@ -4490,7 +4497,8 @@ SILGlobalVariable *SILDeserializer::readGlobalVar(StringRef Name,
   if (VId == 0)
     return nullptr;
 
-  assert(VId <= GlobalVars.size() && "invalid GlobalVar ID");
+  if (VId > GlobalVars.size())
+    MF->fatal("invalid GlobalVar ID");
   auto &globalVarOrOffset = GlobalVars[VId-1];
   if (globalVarOrOffset.isFullyDeserialized())
     return globalVarOrOffset.get();
@@ -4722,7 +4730,8 @@ void SILDeserializer::getAllSILFunctions() {
 SILVTable *SILDeserializer::readVTable(DeclID VId) {
   if (VId == 0)
     return nullptr;
-  assert(VId <= VTables.size() && "invalid VTable ID");
+  if (VId > VTables.size())
+    MF->fatal("invalid VTable ID");
   auto &vTableOrOffset = VTables[VId-1];
 
   if (vTableOrOffset.isFullyDeserialized())
@@ -4892,7 +4901,8 @@ void SILDeserializer::getAllVTables() {
 SILMoveOnlyDeinit *SILDeserializer::readMoveOnlyDeinit(DeclID tableID) {
   if (tableID == 0)
     return nullptr;
-  assert(tableID <= MoveOnlyDeinits.size() && "invalid VTable ID");
+  if (tableID > MoveOnlyDeinits.size())
+    MF->fatal("invalid MoveOnlyDeinit ID");
   auto &moveOnlyDeinitOrOffset = MoveOnlyDeinits[tableID - 1];
 
   if (moveOnlyDeinitOrOffset.isFullyDeserialized())
@@ -5119,7 +5129,8 @@ llvm::Expected<SILWitnessTable *>
                                            SILWitnessTable *existingWt) {
   if (WId == 0)
     return nullptr;
-  assert(WId <= WitnessTables.size() && "invalid WitnessTable ID");
+  if (WId > WitnessTables.size())
+    return MF->diagnoseFatal("invalid WitnessTable ID");
 
   auto &wTableOrOffset = WitnessTables[WId-1];
 
@@ -5295,8 +5306,8 @@ SILDefaultWitnessTable *SILDeserializer::
 readDefaultWitnessTable(DeclID WId, SILDefaultWitnessTable *existingWt) {
   if (WId == 0)
     return nullptr;
-  assert(WId <= DefaultWitnessTables.size() &&
-         "invalid DefaultWitnessTable ID");
+  if (WId > DefaultWitnessTables.size())
+    MF->fatal("invalid DefaultWitnessTable ID");
 
   auto &wTableOrOffset = DefaultWitnessTables[WId-1];
 
@@ -5466,8 +5477,8 @@ SILDeserializer::readDefaultOverrideTable(DeclID tableID,
                                           SILDefaultOverrideTable *existingOt) {
   if (tableID == 0)
     return nullptr;
-  assert(tableID <= DefaultOverrideTables.size() &&
-         "invalid DefaultOverrideTable ID");
+  if (tableID > DefaultOverrideTables.size())
+    MF->fatal("invalid DefaultOverrideTable ID");
 
   auto &oTableOrOffset = DefaultOverrideTables[tableID - 1];
 
@@ -5598,8 +5609,8 @@ SILDifferentiabilityWitness *
 SILDeserializer::readDifferentiabilityWitness(DeclID DId) {
   if (DId == 0)
     return nullptr;
-  assert(DId <= DifferentiabilityWitnesses.size() &&
-         "Invalid SILDifferentiabilityWitness ID");
+  if (DId > DifferentiabilityWitnesses.size())
+    MF->fatal("Invalid SILDifferentiabilityWitness ID");
 
   auto &diffWitnessOrOffset = DifferentiabilityWitnesses[DId - 1];
   if (diffWitnessOrOffset.isFullyDeserialized())
