@@ -432,11 +432,18 @@ public:
 
   static data_type ReadData(internal_key_type key, const uint8_t *data,
                             unsigned length) {
+    // Bounds check every field against the record length so corrupt data
+    // can't cause an out of bounds read. A malformed record has no configs.
     data_type result;
     const uint8_t *limit = data + length;
+    auto remaining = [&]() -> size_t { return limit - data; };
     while (data < limit) {
+      if (remaining() < sizeof(uint32_t) + sizeof(int32_t))
+        return {};
       DeclID genSigId = readNext<uint32_t>(data);
       int32_t nameLength = readNext<int32_t>(data);
+      if (nameLength < 0 || static_cast<size_t>(nameLength) > remaining())
+        return {};
       std::string mangledName(reinterpret_cast<const char *>(data), nameLength);
       data += nameLength;
       result.push_back({std::string(mangledName), genSigId});
