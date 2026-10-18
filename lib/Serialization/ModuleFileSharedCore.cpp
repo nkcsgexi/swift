@@ -1515,16 +1515,21 @@ StringRef ModuleFileSharedCore::getIdentifierText(IdentifierID IID) const {
   if (IID == 0)
     return StringRef();
 
-  assert(IID >= NUM_SPECIAL_IDS);
+  // Bounds check the ID and the offsets so corrupt data can't cause an out of
+  // bounds read even in no-asserts builds.
+  if (IID < NUM_SPECIAL_IDS)
+    return StringRef();
 
   size_t rawID = IID - NUM_SPECIAL_IDS;
-  assert(rawID < Identifiers.size() && "invalid identifier ID");
+  if (rawID >= Identifiers.size())
+    return StringRef();
   auto offset = Identifiers[rawID];
 
-  assert(!IdentifierData.empty() && "no identifier data in module");
-
-  size_t endOffset = ((rawID + 1 < Identifiers.size()) ?
-    Identifiers[rawID + 1] : IdentifierData.size()) - 1;
+  uint64_t end = (rawID + 1 < Identifiers.size()) ?
+    Identifiers[rawID + 1] : IdentifierData.size();
+  if (end == 0 || end > IdentifierData.size())
+    return StringRef();
+  size_t endOffset = end - 1;
 
   ASSERT(IdentifierData[endOffset] == '\0' &&
          "unterminated identifier string data");
