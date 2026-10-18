@@ -5888,7 +5888,8 @@ ModuleFile::getDeclChecked(
   if (DID == 0)
     return nullptr;
 
-  assert(DID <= Decls.size() && "invalid decl ID");
+  if (DID > Decls.size())
+    return diagnoseFatal("invalid decl ID");
   auto &declOrOffset = Decls[DID-1];
 
   if (!declOrOffset.isComplete()) {
