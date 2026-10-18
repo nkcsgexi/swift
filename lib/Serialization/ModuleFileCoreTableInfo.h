@@ -380,17 +380,24 @@ public:
 
   static data_type ReadData(internal_key_type key, const uint8_t *data,
                             unsigned length) {
+    // Bounds check every field against the record length so corrupt data
+    // can't cause an out of bounds read. A malformed record has no methods.
     const constexpr auto recordSize = sizeof(uint32_t) + 1 + sizeof(uint32_t);
     data_type result;
-    while (length > 0) {
+    const uint8_t *limit = data + length;
+    auto remaining = [&]() -> size_t { return limit - data; };
+    while (data < limit) {
+      if (remaining() < recordSize)
+        return {};
       unsigned ownerLen = readNext<uint32_t>(data);
       bool isInstanceMethod = *data++ != 0;
       DeclID methodID = readNext<uint32_t>(data);
+      if (ownerLen > remaining())
+        return {};
       std::string ownerName((const char *)data, ownerLen);
       result.push_back(
         std::make_tuple(std::move(ownerName), isInstanceMethod, methodID));
       data += ownerLen;
-      length -= (recordSize + ownerLen);
     }
 
     return result;
