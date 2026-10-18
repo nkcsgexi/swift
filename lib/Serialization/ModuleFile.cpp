@@ -1403,6 +1403,8 @@ ModuleFile::getCommentForDeclByUSR(StringRef USR) const {
 
   auto &cachePtr = CommentsCache[USR];
   cachePtr = *I;
+  if (!cachePtr)
+    return std::nullopt;
   return cachePtr->Info;
 }
 

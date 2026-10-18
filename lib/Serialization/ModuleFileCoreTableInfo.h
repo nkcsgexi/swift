@@ -483,25 +483,42 @@ public:
 
   data_type ReadData(internal_key_type key, const uint8_t *data,
                      unsigned length) {
+    // Bounds check every field against the record length so corrupt data
+    // can't cause an out of bounds read. A malformed record has no comment.
+    const uint8_t *limit = data + length;
+    auto remaining = [&]() -> size_t { return limit - data; };
+
     data_type result = std::make_unique<DeserializedCommentInfo>();
 
     {
+      if (remaining() < sizeof(uint32_t))
+        return nullptr;
       unsigned BriefSize = readNext<uint32_t>(data);
+      if (BriefSize > remaining())
+        return nullptr;
       result->Info.Brief = StringRef(reinterpret_cast<const char *>(data), BriefSize);
       data += BriefSize;
     }
 
+    if (remaining() < sizeof(uint32_t))
+      return nullptr;
     unsigned NumComments = readNext<uint32_t>(data);
 
     for (unsigned i = 0; i != NumComments; ++i) {
+      if (remaining() < 2 * sizeof(uint32_t))
+        return nullptr;
       unsigned StartColumn = readNext<uint32_t>(data);
       unsigned RawSize = readNext<uint32_t>(data);
+      if (RawSize > remaining())
+        return nullptr;
       auto RawText = StringRef(reinterpret_cast<const char *>(data), RawSize);
       data += RawSize;
 
       result->RawCommentStore.emplace_back(RawText, StartColumn);
     }
     result->Info.Raw = RawComment(result->RawCommentStore);
+    if (remaining() < 2 * sizeof(uint32_t))
+      return nullptr;
     result->Info.Group = readNext<uint32_t>(data);
     result->Info.SourceOrder = readNext<uint32_t>(data);
     return result;
